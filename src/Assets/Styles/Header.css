@@ -1,0 +1,27 @@
+.header-row {
+    background: #fd2b2b;
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.header-text {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    right: 10px;
+}
+
+.menu-icon {
+    color: white;
+    height: 30px;
+    margin: auto 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo {
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+}

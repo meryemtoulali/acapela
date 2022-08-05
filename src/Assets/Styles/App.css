@@ -1,0 +1,9 @@
+body {
+    background-color: #eceff1;
+}
+
+.main-container {
+    display: block;
+    padding: 30px;
+    margin-left: 280px;
+}
