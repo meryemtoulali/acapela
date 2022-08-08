@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 
-class EspaceClient extends Component {
+class Circuits extends Component {
     render() {
         return (
             <div className="main-container">
-                Espace Client
+                Circuits
             </div>
         );
     }
 }
 
-export default EspaceClient;
+export default Circuits;

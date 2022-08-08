@@ -13,7 +13,7 @@
 }
 
 .sidebar li {
-    padding: 8px;
+    margin: 3px;
     list-style: none;
 }
 
@@ -22,12 +22,22 @@
     display: inline-block;
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 2px;
     vertical-align: middle;
 }
-.sidebar li.active {
+
+
+a{
+    text-decoration: none;
+    color: rgb(79, 79, 79);
+    display:block;
+    padding: 8px;
+}
+
+a.active {
     background-color: #def1fd;
     border-radius: 3px;
     color: #fd2b2b;
     font-weight: bold;
+    
+    
 }

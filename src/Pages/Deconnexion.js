@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 
-class EspaceClient extends Component {
+class Deconnexion extends Component {
     render() {
         return (
             <div className="main-container">
-                Espace Client
+                Déconnexion
             </div>
         );
     }
 }
 
-export default EspaceClient;
+export default Deconnexion;

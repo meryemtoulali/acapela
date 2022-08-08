@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 
-class EspaceClient extends Component {
+class ModifierMdp extends Component {
     render() {
         return (
             <div className="main-container">
-                Espace Client
+                Modifier le mot de passe
             </div>
         );
     }
 }
 
-export default EspaceClient;
+export default ModifierMdp;

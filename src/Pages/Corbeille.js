@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 
-class EspaceClient extends Component {
+class Corbeille extends Component {
     render() {
         return (
             <div className="main-container">
-                Espace Client
+                Corbeille
             </div>
         );
     }
 }
 
-export default EspaceClient;
+export default Corbeille;

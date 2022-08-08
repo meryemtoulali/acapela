@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 
-class EspaceClient extends Component {
+class PointsInteret extends Component {
     render() {
         return (
             <div className="main-container">
-                Espace Client
+                Points d'intérêt
             </div>
         );
     }
 }
 
-export default EspaceClient;
+export default PointsInteret;
