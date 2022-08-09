@@ -25,9 +25,11 @@ function App() {
                 <Route path="/points-d-interet" element={<PointsInteret />} />
                 <Route path="/circuits" element={<Circuits />} />
                 <Route path="/corbeille" element={<Corbeille />} />
-                <Route path="/modifier-mot-de-passe" element={<ModifierMdp />} />
+                <Route
+                    path="/modifier-mot-de-passe"
+                    element={<ModifierMdp />}
+                />
                 <Route path="/deconnexion" element={<Deconnexion />} />
-
             </Routes>
         </div>
     );

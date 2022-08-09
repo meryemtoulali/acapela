@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 class SideBar extends Component {
     render() {
         return (
-
             <div className="sidebar">
                 <div>
                     <ul>

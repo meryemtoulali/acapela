@@ -28,7 +28,7 @@
 
 a{
     text-decoration: none;
-    color: rgb(79, 79, 79);
+    color: inherit;
     display:block;
     padding: 8px;
 }

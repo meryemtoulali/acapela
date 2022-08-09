@@ -1,6 +1,6 @@
 .banner {
     height: 700px;
-    background-color: aquamarine;
+    background-color: rgb(212, 212, 212);
     overflow: hidden;
     position: relative;
     display: flex;
