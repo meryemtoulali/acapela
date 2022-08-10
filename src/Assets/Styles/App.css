@@ -4,6 +4,15 @@ body {
 
 .main-container {
     display: block;
-    padding: 30px;
-    margin-left: 280px;
+    margin-left: 310px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    padding-top: 80px;
+}
+
+.inner-container{
+    background-color: white;
+    padding: 50px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 }

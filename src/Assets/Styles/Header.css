@@ -3,6 +3,10 @@
     color: white;
     padding: 10px 20px;
     font-weight: bold;
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header-text {

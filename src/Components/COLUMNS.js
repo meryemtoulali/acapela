@@ -1,22 +1,26 @@
 export const COLUMNS = [
-    {
-        Header: "Id",
-        accessor: "id",
-    },
+    
     {
         Header: "Image",
         accessor: "image",
+        Cell: tableProps => (
+            <img
+              src={tableProps.row.original.image}
+              width={250}
+              alt='city'
+            />
+          )
     },
     {
-        Header: "City",
+        Header: "Ville",
         accessor: "city",
     },
     {
-        Header: "Country",
+        Header: "Pays",
         accessor: "country",
     },
     {
-        Header: "Postal code",
+        Header: "Code postal",
         accessor: "postal_code",
     },
 ];
