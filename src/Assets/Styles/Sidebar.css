@@ -27,14 +27,14 @@
 }
 
 
-a{
+.sidebar a{
     text-decoration: none;
     color: inherit;
     display:block;
     padding: 8px;
 }
 
-a.active {
+.sidebar a.active {
     background-color: #def1fd;
     border-radius: 3px;
     color: #fd2b2b;

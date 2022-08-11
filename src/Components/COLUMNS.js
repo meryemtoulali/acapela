@@ -16,11 +16,7 @@ export const COLUMNS = [
         accessor: "city",
     },
     {
-        Header: "Pays",
-        accessor: "country",
-    },
-    {
-        Header: "Code postal",
-        accessor: "postal_code",
+        Header: "Description",
+        accessor: "description",
     },
 ];
