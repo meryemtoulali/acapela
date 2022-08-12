@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { getVilles } from "../Services/ServiceVilles";
 import "../Assets/Styles/CommunesVilles.css";
-import { Link } from "react-router-dom";
+import { Route, Routes, Link, useRouteMatch, BrowserRouter, } from "react-router-dom";
 import { deleteVille } from "../Services/ServiceVilles";
 import { Form } from "react-bootstrap";
+import ConfirmModal from "../Components/ConfirmModal";
+
 
 class LocationCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showConfirm: false,
+        };
+    }
+
     handleDelete = async () => {
         const id = this.props.id;
         await deleteVille(id);
@@ -15,9 +24,22 @@ class LocationCard extends Component {
         this.props.localDelete(id);
     };
 
+    handleShow = () => this.setState({ showConfirm: true });
+    handleClose = () => this.setState({ showConfirm: false });
+
     render() {
+        //let match = useRouteMatch();
         return (
             <>
+                <ConfirmModal
+                    showConfirm={this.state.showConfirm}
+                    handleClose={this.handleClose}
+                    handleConfirm={() => {
+                        this.handleDelete();
+                        this.handleClose();
+                    }}
+                />
+
                 <div className="location-card mb-3 p-2">
                     <div className="row">
                         <div className="col-sm-3">
@@ -33,12 +55,15 @@ class LocationCard extends Component {
                         </div>
                         <div className="row">
                             <div className="buttons-row">
+                                
+                                <Link to={`/details/1`}>
                                 <button
                                     type="button"
                                     className="mr-2 btn btn-info btn-sm mx-2"
                                 >
-                                    infos
+                                    détails
                                 </button>
+                                </Link>
 
                                 <Link to={`/ajouter-ville/${this.props.id}`}>
                                     <button
@@ -48,18 +73,21 @@ class LocationCard extends Component {
                                         modifier
                                     </button>
                                 </Link>
-
-                                <button
-                                    type="button"
-                                    className="mr-2 btn btn-danger btn-sm mx-2"
-                                    onClick={this.handleDelete}
-                                >
-                                    supprimer
-                                </button>
+                                
+                                
+                                    <button
+                                        type="button"
+                                        className="mr-2 btn btn-danger btn-sm mx-2"
+                                        onClick={this.handleShow}
+                                    >
+                                        supprimer
+                                    </button>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+                    
             </>
         );
     }
@@ -121,10 +149,10 @@ class CommunesVilles extends Component {
             <div className="main-container">
                 <div className="inner-container">
                     <Form.Group>
-                        <Form.Label  htmlFor="searchInput">
+                        <Form.Label htmlFor="searchInput">
                             Chercher une commune / ville
                         </Form.Label>
-                        <Form.Control 
+                        <Form.Control
                             name="searchInput"
                             value={searchInput || ""}
                             onChange={this.handleChange}
@@ -132,12 +160,7 @@ class CommunesVilles extends Component {
                     </Form.Group>
 
                     <div
-                        className="my-3 p-2"
-                        style={{
-                            backgroundColor: "rgb(11, 16, 55)",
-                            color: "white",
-                            borderRadius: "10px",
-                        }}
+                        className="my-3 p-2 blueTitle"
                     >
                         Liste des communes/villes
                     </div>

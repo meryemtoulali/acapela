@@ -10,3 +10,9 @@
 .buttons-row {
     text-align: right;
 }
+
+.blueTitle {
+    background-color: rgb(11, 16, 55);
+    color: white;
+    border-radius: 5px;
+}

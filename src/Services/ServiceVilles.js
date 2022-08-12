@@ -18,6 +18,8 @@ export const getVilles = async () => {
     return response.data;
 };
 
+
+
 export const postVille = async (props) => {
     const formdata = props.formdata;
     await client
@@ -87,3 +89,54 @@ export const postVille =  (props) => {
     });
 }
 */
+
+
+
+export const getPts = async (props) => {
+    
+    let getId = "";
+    if(props !== undefined) {getId = "/" + props}
+    const response = await client.get(`/table${getId}`);
+    return response.data;
+};
+
+
+
+export const deletePts = async (props) => {
+    // const id = props
+    // await client
+    //     .delete(`/${id}`)
+    //     .then((response) => {
+    //         console.log(response);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+
+
+        await client
+        .delete("/table")
+        .then((response) => {
+            console.log(response);
+            console.log("success! status is ", response.status);
+            
+        })
+        .catch((err) => {
+            console.log("error caught! ");
+            console.log(err);
+            console.log("error status : ", err.response.status);
+            
+        });
+};
+
+export const putPts = async (props) => {
+    const formdata = props.formdata;
+    await client
+        .put("/table", formdata)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};

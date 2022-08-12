@@ -48,7 +48,7 @@ export const AjouterVille = (props) => {
                 <h5>Créer une commune/ville</h5>
                 <Form onSubmit={handleSubmit}>
                     <div className="row">
-                        <div className="col-8">
+                        <div className="col-7">
                             <Form.Group>
                                 <Form.Label htmlFor="nomVille">
                                     Nom de la commune/ville
@@ -62,7 +62,7 @@ export const AjouterVille = (props) => {
                             </Form.Group>
                         </div>
 
-                        <div className="col-4">
+                        <div className="col-5">
                             <Form.Group>
                                 <Form.Label>Image</Form.Label>
                                 <Form.Control

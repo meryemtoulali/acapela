@@ -8,6 +8,8 @@ import Corbeille from "./Pages/Corbeille";
 import ModifierMdp from "./Pages/ModifierMdp";
 import Deconnexion from "./Pages/Deconnexion";
 import AjouterVille from "./Pages/AjouterVille"
+import ModifierTable from "./Pages/ModifierTable"
+import DetailsVille from "./Pages/DetailsVille"
 
 import Header from "./Components/Header";
 import SideBar from "./Components/Sidebar";
@@ -28,9 +30,16 @@ function App() {
                 <Route path="/corbeille" element={<Corbeille />} />
                 <Route path="/ajouter-ville" element={<AjouterVille />} />
                 <Route path="/ajouter-ville/:id" element={<AjouterVille />} />
+
+
+                <Route path="/details/:id" element={<DetailsVille/>}/>
                 <Route
                     path="/modifier-mot-de-passe"
                     element={<ModifierMdp />}
+                />
+                <Route
+                    path="/modifier-table/:id"
+                    element={<ModifierTable />}
                 />
                 <Route path="/deconnexion" element={<Deconnexion />} />
             </Routes>
