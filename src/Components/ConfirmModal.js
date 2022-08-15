@@ -9,7 +9,7 @@ export default class ConfirmModal extends Component {
                 onHide={this.props.handleClose}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Supprimer cette ville/commune?</Modal.Title>
+                    <Modal.Title>Voulez-vous vraiment supprimer ?</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Footer>

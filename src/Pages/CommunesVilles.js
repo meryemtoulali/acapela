@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { getVilles } from "../Services/ServiceVilles";
 import "../Assets/Styles/CommunesVilles.css";
-import { Route, Routes, Link, useRouteMatch, BrowserRouter, } from "react-router-dom";
+import {
+    Route,
+    Routes,
+    Link,
+    useRouteMatch,
+    BrowserRouter,
+} from "react-router-dom";
 import { deleteVille } from "../Services/ServiceVilles";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import ConfirmModal from "../Components/ConfirmModal";
-
 
 class LocationCard extends Component {
     constructor(props) {
@@ -55,14 +60,13 @@ class LocationCard extends Component {
                         </div>
                         <div className="row">
                             <div className="buttons-row">
-                                
                                 <Link to={`/details/1`}>
-                                <button
-                                    type="button"
-                                    className="mr-2 btn btn-info btn-sm mx-2"
-                                >
-                                    détails
-                                </button>
+                                    <button
+                                        type="button"
+                                        className="mr-2 btn btn-info btn-sm mx-2"
+                                    >
+                                        détails
+                                    </button>
                                 </Link>
 
                                 <Link to={`/ajouter-ville/${this.props.id}`}>
@@ -73,21 +77,18 @@ class LocationCard extends Component {
                                         modifier
                                     </button>
                                 </Link>
-                                
-                                
-                                    <button
-                                        type="button"
-                                        className="mr-2 btn btn-danger btn-sm mx-2"
-                                        onClick={this.handleShow}
-                                    >
-                                        supprimer
-                                    </button>
-                                
+
+                                <button
+                                    type="button"
+                                    className="mr-2 btn btn-danger btn-sm mx-2"
+                                    onClick={this.handleShow}
+                                >
+                                    supprimer
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                    
             </>
         );
     }
@@ -148,20 +149,28 @@ class CommunesVilles extends Component {
         return (
             <div className="main-container">
                 <div className="inner-container">
-                    <Form.Group>
-                        <Form.Label htmlFor="searchInput">
-                            Chercher une commune / ville
-                        </Form.Label>
-                        <Form.Control
-                            name="searchInput"
-                            value={searchInput || ""}
-                            onChange={this.handleChange}
-                        />
-                    </Form.Group>
+                    <fieldset className="fieldset-ville px">
+                        <div className="fieldset-ville-titre">
+                            Moteur de recherche
+                        </div>
+                        <Form.Group className="row">
+                            <Form.Label htmlFor="searchInput" className="col">
+                                Chercher une commune / ville :
+                            </Form.Label>
+                            <Form.Control
+                                className="col"
+                                name="searchInput"
+                                value={searchInput || ""}
+                                onChange={this.handleChange}
+                            />
+                            <div className="col">
+                                {" "}
+                                <Button variant="secondary">Chercher</Button>
+                            </div>
+                        </Form.Group>
+                    </fieldset>
 
-                    <div
-                        className="my-3 p-2 blueTitle"
-                    >
+                    <div className="my-3 p-2 blueTitle">
                         Liste des communes/villes
                     </div>
 

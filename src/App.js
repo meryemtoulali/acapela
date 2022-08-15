@@ -2,7 +2,10 @@ import "./Assets/Styles/App.css";
 import Accueil from "./Pages/Accueil.js";
 import EspaceClient from "./Pages/EspaceClient";
 import CommunesVilles from "./Pages/CommunesVilles";
-import PointsInteret from "./Pages/PointsInteret";
+import PointsInteretTable from "./Pages/Points-Interet/PointsInteretTable";
+import PointsInteretListe from "./Pages/Points-Interet/PointsInteretListe";
+import PointsInteretForm from "./Pages/Points-Interet/PointsInteretForm"
+
 import Circuits from "./Pages/Circuits";
 import Corbeille from "./Pages/Corbeille";
 import ModifierMdp from "./Pages/ModifierMdp";
@@ -25,7 +28,11 @@ function App() {
                 <Route path="/" element={<Accueil />} />
                 <Route path="/espace-client" element={<EspaceClient />} />
                 <Route path="/communes-villes" element={<CommunesVilles />} />
-                <Route path="/points-d-interet" element={<PointsInteret />} />
+                <Route path="/points-d-interet/table" element={<PointsInteretTable />} />
+                <Route path="/points-d-interet/liste" element={<PointsInteretListe />} />
+                <Route path="/points-d-interet/form" element={<PointsInteretForm />} />
+
+
                 <Route path="/circuits" element={<Circuits />} />
                 <Route path="/corbeille" element={<Corbeille />} />
                 <Route path="/ajouter-ville" element={<AjouterVille />} />

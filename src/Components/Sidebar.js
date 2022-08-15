@@ -30,7 +30,7 @@ class SideBar extends Component {
                         </li>
 
                         <li>
-                            <NavLink to="/points-d-interet">
+                            <NavLink to="/points-d-interet/liste">
                                 <img src={menu} alt="" />
                                 Points d'intérêt
                             </NavLink>

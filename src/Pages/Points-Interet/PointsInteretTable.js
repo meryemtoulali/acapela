@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 //import { COLUMNS } from "../Components/COLUMNS";
-import Table from "../Components/Table";
-import { getPts, deletePts } from "../Services/ServiceVilles";
+import Table from "../../Components/Table";
+import { getPts, deletePts } from "../../Services/ServiceVilles";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-class PointsInteret extends Component {
+class PointsInteretTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -137,4 +137,4 @@ class PointsInteret extends Component {
     }
 }
 
-export default PointsInteret;
+export default PointsInteretTable;

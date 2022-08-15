@@ -6,6 +6,7 @@
     position: fixed;
     font-size: 14px;
     margin-top: 50px;
+    
 }
 
 .sidebar ul {
@@ -26,11 +27,10 @@
     vertical-align: middle;
 }
 
-
-.sidebar a{
+.sidebar a {
     text-decoration: none;
     color: inherit;
-    display:block;
+    display: block;
     padding: 8px;
 }
 
@@ -39,6 +39,4 @@
     border-radius: 3px;
     color: #fd2b2b;
     font-weight: bold;
-    
-    
 }
