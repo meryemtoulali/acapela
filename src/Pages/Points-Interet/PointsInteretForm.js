@@ -25,7 +25,7 @@ function PointsInteretForm() {
         poiDetails: {
             nomVille: "",
             coord: "",
-            score: "",
+            score: 5,
             type: "",
             services: "",
             //image: null,
@@ -43,8 +43,26 @@ function PointsInteretForm() {
             //audio: "",
         },
         poiDate: {
-            recurrence: false,
+            isRecurrence: "false",
             periodes: [{ dateDebut: "", dateFin: "" }],
+            recurrenceOptions: {
+                dates: [{ dateDebut: "", dateFin: "" }],
+                frequenceType: 'Hebdomadaire',
+                frequenceHebdo:{
+                    nbrSemaines: '',
+                    jours: [],
+                },
+                frequenceMensu:{
+                    nbrMois: '',
+                    jour: '',
+                },
+                frequenceAnnu:{
+                    nbrAns: '',
+                    jour: '',
+                    mois: '',
+                },
+
+            }
         },
     };
 
@@ -101,6 +119,19 @@ function PointsInteretForm() {
         </div>
     );
 }
+//on submit check isRecurrence
+//if true, don't submit poiDate.recurrenceOptions
+//if false, don't submit poiDate.periodes
+
+
+
+
+
+
+
+
+
+
 
 export default PointsInteretForm;
 

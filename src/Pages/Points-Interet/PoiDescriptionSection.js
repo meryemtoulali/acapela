@@ -1,153 +1,190 @@
 import { Field } from "formik";
 import { Button, Form } from "react-bootstrap";
+import {
+    FormikSelect,
+    FormikTextInput,
+    FormikTextArea,
+} from "./FormikControls";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faPlay,
+    faPause,
+    faArrowDown,
+} from "@fortawesome/free-solid-svg-icons";
 
-
-const PoiDescriptionSection = ({values, setFieldValue}) => {
+const PoiDescriptionSection = ({ values, setFieldValue }) => {
     return (
         <div className="poiDescription">
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.nomPoi">
-                                                    Nom du point d'intérêt
-                                                </label>
-                                                <Field
-                                                    as={Form.Control}
-                                                    type="text"
-                                                    name="poiDescription.nomPoi"
-                                                />
-                                            </Form.Group>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <FormikTextInput
+                        name="poiDescription.nomPoi"
+                        label="Nom du point d'intérêt"
+                    />
+                </div>
+            </div>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.description">
-                                                    Description du point
-                                                    d'intérêt
-                                                </label>
-                                                <Field
-                                                    as="textarea"
-                                                    className="form-control"
-                                                    name="poiDescription.description"
-                                                />
-                                            </Form.Group>
+            <Form.Group>
+                <div className="row mb-3 align-items-center">
+                    <label
+                        className="col-lg-2 col-form-label"
+                        htmlFor="poiDescription.description"
+                    >
+                        Description du point d'intérêt
+                    </label>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.descriptionAudio">
-                                                    Description audio
-                                                </label>
-                                                <Field
-                                                    as="textarea"
-                                                    className="form-control"
-                                                    name="poiDescription.descriptionAudio"
-                                                />
-                                            </Form.Group>
+                    <div className="col-lg-8">
+                        <Field
+                            as="textarea"
+                            className="form-control"
+                            name="poiDescription.description"
+                        />
+                    </div>
+                    
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.voix">
-                                                    Voix
-                                                </label>
-                                                <Field
-                                                    as={Form.Select}
-                                                    className="form-control"
-                                                    name="poiDescription.voix"
-                                                >
-                                                    <option value="">
-                                                        Sélectionner
-                                                    </option>
+                    <div className="col-lg-2 mt-2 mt-lg-0">
+                        <Button type="button" variant="secondary" onClick={() => {
+                                    setFieldValue("poiDescription.descriptionAudio", values.poiDescription.description)
+                                }}>
+                            <FontAwesomeIcon
+                                icon={faArrowDown}
+                                className="me-2"
+                                
+                            />
+                            Duppliquer
+                        </Button>
+                    </div>
+                </div>
+            </Form.Group>
 
-                                                    <option value="Manon-BE22k_NT">
-                                                        Manon-BE22k_NT
-                                                    </option>
-                                                    <option value="Louise22k_NT">
-                                                        Louise22k_NT
-                                                    </option>
-                                                    <option value="Alice22k_NT">
-                                                        Alice22k_NT
-                                                    </option>
-                                                </Field>
-                                            </Form.Group>
+            <FormikTextArea
+                name="poiDescription.descriptionAudio"
+                label="Description audio"
+            />
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.dictionnaire">
-                                                    Dictionnaire
-                                                </label>
-                                                <Field
-                                                    as={Form.Select}
-                                                    className="form-control"
-                                                    name="poiDescription.dictionnaire"
-                                                >
-                                                    <option value="">
-                                                        Sélectionner
-                                                    </option>
-                                                    <option value="test">
-                                                        test
-                                                    </option>
-                                                </Field>
-                                            </Form.Group>
+            <div className="row align-items-center">
+                <div className="col-lg-6"></div>
+            </div>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <FormikSelect
+                        name="poiDescription.voix"
+                        label="Voix"
+                        options={[
+                            "Manon-BE22k_NT",
+                            "Louise22k_NT",
+                            "Alice22k_NT",
+                        ]}
+                    />
+                </div>
+                <div className="col-lg-6">
+                    <FormikSelect
+                        name="poiDescription.dictionnaire"
+                        label="Dictionnaire"
+                        options={["Dictionnaire1", "Dictionnaire2"]}
+                    />
+                </div>
+            </div>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.infos">
-                                                    Informations additionnelles
-                                                </label>
-                                                <Field
-                                                    as="textarea"
-                                                    className="form-control"
-                                                    name="poiDescription.infos"
-                                                />
-                                            </Form.Group>
+            <div className="row mb-3 align-items-center">
+                <div className="col-2"></div>
+                <div className="col-lg-10 justify-content-center">
+                    <Button
+                        type="button"
+                        className="me-3"
+                        style={{ width: "60px" }}
+                    >
+                        <FontAwesomeIcon icon={faPlay} />
+                    </Button>
+                    <Button type="button" style={{ width: "60px" }}>
+                        <FontAwesomeIcon icon={faPause} />
+                    </Button>
+                </div>
+            </div>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.images">
-                                                    Images
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="file"
-                                                    multiple
-                                                    name="poiDescription.images"
-                                                    onChange={(event) => {
-                                                        setFieldValue(
-                                                            "fichiers.images",
-                                                            event.target.files
-                                                        );
-                                                    }}
-                                                />
-                                            </Form.Group>
+            <FormikTextArea
+                name="poiDescription.infos"
+                label="Informations additionnelles"
+            />
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.videos">
-                                                    Vidéos
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="file"
-                                                    multiple
-                                                    name="poiDescription.videos"
-                                                    onChange={(event) => {
-                                                        setFieldValue(
-                                                            "fichiers.videos",
-                                                            event.target.files
-                                                        );
-                                                    }}
-                                                />
-                                            </Form.Group>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <Form.Group>
+                        <div className="row mb-3 align-items-center">
+                            <label htmlFor="poiDescription.images">
+                                Images
+                            </label>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDescription.audio">
-                                                    Audio
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="file"
-                                                    multiple
-                                                    name="poiDescription.audio"
-                                                    onChange={(event) => {
-                                                        setFieldValue(
-                                                            "fichiers.audio",
-                                                            event.target.files
-                                                        );
-                                                    }}
-                                                />
-                                            </Form.Group>
-                                            </div>
-    )
-}
+                            <div className="col-lg-8">
+                                <Field
+                                    className="form-control"
+                                    type="file"
+                                    multiple
+                                    name="poiDescription.images"
+                                    onChange={(event) => {
+                                        setFieldValue(
+                                            "fichiers.images",
+                                            event.target.files
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </Form.Group>
+                </div>
 
-export default PoiDescriptionSection
+                <div className="col-lg-6">
+                    <Form.Group>
+                        <div className="row mb-3 align-items-center">
+                            <label htmlFor="poiDescription.videos">
+                                Vidéos
+                            </label>
+
+                            <div className="col-lg-8">
+                                <Field
+                                    className="form-control"
+                                    type="file"
+                                    multiple
+                                    name="poiDescription.videos"
+                                    onChange={(event) => {
+                                        setFieldValue(
+                                            "fichiers.videos",
+                                            event.target.files
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </Form.Group>
+                </div>
+            </div>
+
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <Form.Group>
+                        <div className="row mb-3 align-items-center">
+                            <label htmlFor="poiDescription.audio">Audio</label>
+
+                            <div className="col-lg-8">
+                                <Field
+                                    className="form-control"
+                                    type="file"
+                                    multiple
+                                    name="poiDescription.audio"
+                                    onChange={(event) => {
+                                        setFieldValue(
+                                            "fichiers.audio",
+                                            event.target.files
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </Form.Group>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default PoiDescriptionSection;

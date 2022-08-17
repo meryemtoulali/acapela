@@ -1,107 +1,123 @@
 import { Field } from "formik";
 import { Button, Form } from "react-bootstrap";
+import {
+    FormikSelect,
+    FormikTextInput,
+    FormikTextArea,
+} from "./FormikControls";
 
-
-const PoiDetailsSection = ({values, setFieldValue}) => {
+const PoiDetailsSection = ({ values, setFieldValue }) => {
     return (
         <div className="poiDetails">
-        
-        <Form.Group>
-                                                <label htmlFor="poiDetails.nomVille">
-                                                    Nom de la ville/commune
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="text"
-                                                    name="poiDetails.nomVille"
-                                                />
-                                            </Form.Group>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <FormikSelect
+                        name="poiDetails.nomVille"
+                        label="Nom de la ville/commune"
+                        options={["San Tropez", "Orlando", "Rabat"]}
+                    />
+                </div>
+            </div>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDetails.coord">
-                                                    Coordonnées
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="text"
-                                                    name="poiDetails.coord"
-                                                />
-                                            </Form.Group>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <FormikTextInput
+                        name="poiDetails.coord"
+                        label="Coordonnées"
+                    />
+                </div>
+            </div>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDetails.score">
-                                                    Score :{" "}
-                                                    {values.poiDetails.score}
-                                                </label>
-                                                <Field
-                                                    className="form-range"
-                                                    type="range"
-                                                    name="poiDetails.score"
-                                                    min="0"
-                                                    max="5"
-                                                />
-                                            </Form.Group>
+            <Form.Group>
+                <div className="row mb-3 align-items-center">
+                    <label
+                        htmlFor="poiDetails.score"
+                        className="col-lg-2 col-form-label"
+                    >
+                        Score : {values.poiDetails.score}
+                    </label>
+                    <div className="col-lg-4 pt-2">
+                        <Field
+                            className="form-range"
+                            type="range"
+                            name="poiDetails.score"
+                            min="0"
+                            max="5"
+                        />
+                    </div>
+                </div>
+            </Form.Group>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDetails.type">
-                                                    Type du point d'intérêt
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="text"
-                                                    name="poiDetails.type"
-                                                />
-                                            </Form.Group>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <FormikTextInput
+                        name="poiDetails.type"
+                        label="Type du point d'intérêt"
+                    />
+                </div>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDetails.services">
-                                                    Services associés
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="text"
-                                                    name="poiDetails.services"
-                                                />
-                                            </Form.Group>
+                <div className="col-lg-6">
+                    <FormikTextInput
+                        name="poiDetails.services"
+                        label="Services associés"
+                    />
+                </div>
+            </div>
+            <div className="row align-items-center">
+                <div className="col-lg-6">
+                    <Form.Group>
+                        <div className="row mb-3 align-items-center">
+                            <label
+                                className="col-lg-4 col-form-label"
+                                htmlFor="poiDetails.image"
+                            >
+                                Image par défaut
+                            </label>
+                            <div className="col-lg-8">
+                                <Field
+                                    className="form-control"
+                                    type="file"
+                                    name="poiDetails.image"
+                                    onChange={(event) => {
+                                        setFieldValue(
+                                            "fichiers.imageParDefaut",
+                                            event.target.files[0]
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </Form.Group>
+                </div>
+                <div className="col-lg-6">
+                    <Form.Group>
+                        <div className="row mb-3 align-items-center">
+                            <label
+                                className="col-lg-4 col-form-label"
+                                htmlFor="poiDetails.video"
+                            >
+                                Vidéo par défaut
+                            </label>
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDetails.image">
-                                                    Image par défaut
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="file"
-                                                    name="poiDetails.image"
-                                                    onChange={(event) => {
-                                                        setFieldValue(
-                                                            "fichiers.imageParDefaut",
-                                                            event.target
-                                                                .files[0]
-                                                        );
-                                                    }}
-                                                />
-                                            </Form.Group>
+                            <div className="col-lg-8">
+                                <Field
+                                    className="form-control"
+                                    type="file"
+                                    name="poiDetails.video"
+                                    onChange={(event) => {
+                                        setFieldValue(
+                                            "fichiers.videoParDefaut",
+                                            event.target.files[0]
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </Form.Group>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-                                            <Form.Group>
-                                                <label htmlFor="poiDetails.video">
-                                                    Vidéo par défaut
-                                                </label>
-                                                <Field
-                                                    className="form-control"
-                                                    type="file"
-                                                    name="poiDetails.video"
-                                                    onChange={(event) => {
-                                                        setFieldValue(
-                                                            "fichiers.videoParDefaut",
-                                                            event.target
-                                                                .files[0]
-                                                        );
-                                                    }}
-                                                />
-                                            </Form.Group>
-                                            
-                                            </div>
-    )
-}
-
-export default PoiDetailsSection
+export default PoiDetailsSection;

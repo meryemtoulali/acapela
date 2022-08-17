@@ -16,3 +16,13 @@ body {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
+
+@media (max-width: 1360px) {
+    .sidebar {
+        display: none;
+    }
+    .main-container{
+        margin-left: 30px;
+        
+    }
+}
