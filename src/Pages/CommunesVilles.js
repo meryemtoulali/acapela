@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { getVilles } from "../Services/ServiceVilles";
 import "../Assets/Styles/CommunesVilles.css";
-import {
-    Route,
-    Routes,
-    Link,
-    useRouteMatch,
-    BrowserRouter,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { deleteVille } from "../Services/ServiceVilles";
 import { Form, Button } from "react-bootstrap";
 import ConfirmModal from "../Components/ConfirmModal";

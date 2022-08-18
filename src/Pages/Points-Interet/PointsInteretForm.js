@@ -1,79 +1,51 @@
-import { Accordion, Button, Form } from "react-bootstrap";
-
-import { Formik, Form as FormikForm, Field, FieldArray } from "formik";
+import { Accordion, Button } from "react-bootstrap";
+import * as Yup from "yup";
+import { Formik, Form as FormikForm } from "formik";
+import { Tabs, Tab } from "react-bootstrap";
+import {initialValues, validationSchema} from "./PoiFormVariables"
 
 import React from "react";
+import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
 import "../../Assets/Styles/PointsInteretForm.css";
 import PoiDetailsSection from "./PoiDetailsSection";
 import PoiDescriptionSection from "./PoiDescriptionSection";
-import PoiDateSection from "./PoiDateSection"
-
+import PoiDateSection from "./PoiDateSection";
 
 function PointsInteretForm() {
-    const initialValues = {
-        dateDebut: "",
-        dateFin: "",
-        fichiers: {
-            imageParDefaut: null,
-            videoParDefaut: null,
-            images: [],
-            videos: [],
-            audio: null,
-        },
-        poiDetails: {
-            nomVille: "",
-            coord: "",
-            score: 5,
-            type: "",
-            services: "",
-            //image: null,
-            //video: null,
-        },
-        poiDescription: {
-            nomPoi: "",
-            description: "",
-            descriptionAudio: "",
-            voix: "",
-            dictionnaire: "",
-            infos: "",
-            //images: "",
-            //videos: "",
-            //audio: "",
-        },
-        poiDate: {
-            isRecurrence: "false",
-            periodes: [{ dateDebut: "", dateFin: "" }],
-            recurrenceOptions: {
-                dates: [{ dateDebut: "", dateFin: "" }],
-                frequenceType: 'Hebdomadaire',
-                frequenceHebdo:{
-                    nbrSemaines: '',
-                    jours: [],
-                },
-                frequenceMensu:{
-                    nbrMois: '',
-                    jour: '',
-                },
-                frequenceAnnu:{
-                    nbrAns: '',
-                    jour: '',
-                    mois: '',
-                },
+    const languages = ["fr", "ar", "en"];
+    const [key, setKey] = useState(languages[0]);
 
-            }
-        },
-    };
 
     const onSubmit = (values) => {
         console.log("Form data is: ", values);
     };
 
+
+    const langValidation = Yup.object({
+
+    })
+    langValidation['fr'] = Yup.object({
+        nomPoi: Yup.string().required("Obligatoire"),
+        description: Yup.string().required("Obligatoire"),
+        descriptionAudio: Yup.string().required("Obligatoire"),
+        voix: Yup.string().required("Obligatoire"),
+        dictionnaire: Yup.string().required("Obligatoire"),
+    })
+
+    console.log(langValidation)
+
+    
+
     return (
         <div className="main-container">
             <div className="inner-container">
-                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                <Formik
+                    initialValues={initialValues}
+                    onSubmit={onSubmit}
+                    validationSchema={validationSchema}
+                >
                     {({ values, setFieldValue }) => (
                         <FormikForm>
                             <Accordion defaultActiveKey="0">
@@ -84,7 +56,10 @@ function PointsInteretForm() {
                                         </h6>
                                     </Accordion.Header>
                                     <Accordion.Body>
-                                        < PoiDetailsSection  values={values} setFieldValue={setFieldValue}/>
+                                        <PoiDetailsSection
+                                            values={values}
+                                            setFieldValue={setFieldValue}
+                                        />
                                     </Accordion.Body>
                                 </Accordion.Item>
 
@@ -95,7 +70,34 @@ function PointsInteretForm() {
                                         </h6>
                                     </Accordion.Header>
                                     <Accordion.Body>
-                                    < PoiDescriptionSection  values={values} setFieldValue={setFieldValue}/>
+                                        
+                                        <Tabs
+                                            id="langTab"
+                                            activeKey={key}
+                                            onSelect={(e) => setKey(e)}
+                                        >
+                                            {languages.map((lang, index) => {
+                                                return (
+                                                   
+                                                        <Tab
+                                                        key={index}
+                                                        eventKey={lang}
+                                                        title={lang}
+                                                    >
+                                                        <div className="pt-3">
+                                                            <PoiDescriptionSection
+                                                            lang={lang}
+                                                            values={values}
+                                                            setFieldValue={
+                                                                setFieldValue
+                                                            }
+                                                        />
+                                                        </div>
+                                                        
+                                                    </Tab>
+                                                );
+                                            })}
+                                        </Tabs>
                                     </Accordion.Body>
                                 </Accordion.Item>
 
@@ -106,7 +108,10 @@ function PointsInteretForm() {
                                         </h6>
                                     </Accordion.Header>
                                     <Accordion.Body>
-                                    < PoiDateSection  values={values} setFieldValue={setFieldValue}/>
+                                        <PoiDateSection
+                                            values={values}
+                                            setFieldValue={setFieldValue}
+                                        />
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
@@ -122,16 +127,6 @@ function PointsInteretForm() {
 //on submit check isRecurrence
 //if true, don't submit poiDate.recurrenceOptions
 //if false, don't submit poiDate.periodes
-
-
-
-
-
-
-
-
-
-
 
 export default PointsInteretForm;
 

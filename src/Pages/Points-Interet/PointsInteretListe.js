@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { getPOI, deletePOI } from "../../Services/ServiceVilles";
 import "../../Assets/Styles/CommunesVilles.css";
 import {
-    Route,
-    Routes,
     Link,
-    useRouteMatch,
-    BrowserRouter,
 } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";

@@ -1,15 +1,12 @@
-import { Field, FieldArray } from "formik";
+import { FieldArray } from "formik";
 import { Button, Form } from "react-bootstrap";
 import PeriodePicker from "./PeriodePicker";
 import OptionsHebdo from "./OptionsHebdo";
 import OptionsMensu from "./OptionsMensu";
 import OptionsAnnu from "./OptionsAnnu"
 import {
-    FormikSelect,
-    FormikTextInput,
-    FormikTextArea,
     FormikRadioGroup,
-} from "./FormikControls";
+} from "../../Components/FormikControls";
 
 const PoiDetailsSection = ({ values, setFieldValue }) => {
     return (

@@ -1,10 +1,10 @@
-import { Field } from "formik";
-import { Button, Form } from "react-bootstrap";
+import { Field, ErrorMessage } from "formik";
+import { Form } from "react-bootstrap";
 import {
     FormikSelect,
     FormikTextInput,
-    FormikTextArea,
-} from "./FormikControls";
+} from "../../Components/FormikControls";
+import TextError from "../../Components/TextError";
 
 const PoiDetailsSection = ({ values, setFieldValue }) => {
     return (
@@ -50,19 +50,39 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
 
             <div className="row align-items-center">
                 <div className="col-lg-6">
-                    <FormikTextInput
+                    <FormikSelect
                         name="poiDetails.type"
                         label="Type du point d'intérêt"
+                        options={[
+                            "Culturel",
+                            "Famille",
+                            "Sportif",
+                            "Croisière",
+                            "Location de bateaux",
+                            "Camping-car",
+                            "Centre de vacances",
+                            "Hôtels",
+                        ]}
                     />
                 </div>
 
                 <div className="col-lg-6">
-                    <FormikTextInput
+                    <FormikSelect
                         name="poiDetails.services"
                         label="Services associés"
+                        options={[
+                            "Handicap",
+                            "Pique-nique",
+                            "Toilettes",
+                            "Wi-fi",
+                            "Boutique d'information touristique",
+                            "Restaurants",
+                            "Hôtels",
+                        ]}
                     />
                 </div>
             </div>
+
             <div className="row align-items-center">
                 <div className="col-lg-6">
                     <Form.Group>
@@ -85,6 +105,7 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                         );
                                     }}
                                 />
+                                <ErrorMessage name="fichiers.imageParDefaut" component={TextError} />
                             </div>
                         </div>
                     </Form.Group>
@@ -111,6 +132,7 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                         );
                                     }}
                                 />
+                                <ErrorMessage name="fichiers.videoParDefaut" component={TextError} />
                             </div>
                         </div>
                     </Form.Group>

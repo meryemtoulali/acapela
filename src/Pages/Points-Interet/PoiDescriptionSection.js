@@ -1,10 +1,11 @@
-import { Field } from "formik";
+import { Field, ErrorMessage } from "formik";
 import { Button, Form } from "react-bootstrap";
 import {
     FormikSelect,
     FormikTextInput,
     FormikTextArea,
-} from "./FormikControls";
+} from "../../Components/FormikControls";
+import TextError from "../../Components/TextError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPlay,
@@ -12,13 +13,13 @@ import {
     faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-const PoiDescriptionSection = ({ values, setFieldValue }) => {
+const PoiDescriptionSection = ({ lang, values, setFieldValue }) => {
     return (
         <div className="poiDescription">
             <div className="row align-items-center">
                 <div className="col-lg-6">
                     <FormikTextInput
-                        name="poiDescription.nomPoi"
+                        name={`poiDescription.${lang}.nomPoi`}
                         label="Nom du point d'intérêt"
                     />
                 </div>
@@ -28,7 +29,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                 <div className="row mb-3 align-items-center">
                     <label
                         className="col-lg-2 col-form-label"
-                        htmlFor="poiDescription.description"
+                        htmlFor={`poiDescription.${lang}.description`}
                     >
                         Description du point d'intérêt
                     </label>
@@ -37,14 +38,16 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                         <Field
                             as="textarea"
                             className="form-control"
-                            name="poiDescription.description"
+                            name={`poiDescription.${lang}.description`}
                         />
+                                            <ErrorMessage name={`poiDescription.${lang}.description`} component={TextError} />
+
                     </div>
                     
 
                     <div className="col-lg-2 mt-2 mt-lg-0">
                         <Button type="button" variant="secondary" onClick={() => {
-                                    setFieldValue("poiDescription.descriptionAudio", values.poiDescription.description)
+                                    setFieldValue(`poiDescription.${lang}.descriptionAudio`, values.poiDescription[`${lang}`].description)
                                 }}>
                             <FontAwesomeIcon
                                 icon={faArrowDown}
@@ -58,7 +61,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
             </Form.Group>
 
             <FormikTextArea
-                name="poiDescription.descriptionAudio"
+                name={`poiDescription.${lang}.descriptionAudio`}
                 label="Description audio"
             />
 
@@ -68,7 +71,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
             <div className="row align-items-center">
                 <div className="col-lg-6">
                     <FormikSelect
-                        name="poiDescription.voix"
+                        name={`poiDescription.${lang}.voix`}
                         label="Voix"
                         options={[
                             "Manon-BE22k_NT",
@@ -79,7 +82,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                 </div>
                 <div className="col-lg-6">
                     <FormikSelect
-                        name="poiDescription.dictionnaire"
+                        name={`poiDescription.${lang}.dictionnaire`}
                         label="Dictionnaire"
                         options={["Dictionnaire1", "Dictionnaire2"]}
                     />
@@ -103,7 +106,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
             </div>
 
             <FormikTextArea
-                name="poiDescription.infos"
+                name={`poiDescription.${lang}.infos`}
                 label="Informations additionnelles"
             />
 
@@ -111,7 +114,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                 <div className="col-lg-6">
                     <Form.Group>
                         <div className="row mb-3 align-items-center">
-                            <label htmlFor="poiDescription.images">
+                            <label className="col-lg-4" htmlFor={`poiDescription.${lang}.fichiers.images`}>
                                 Images
                             </label>
 
@@ -120,10 +123,10 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                                     className="form-control"
                                     type="file"
                                     multiple
-                                    name="poiDescription.images"
+                                    name="poiDescription.fichiers.images"
                                     onChange={(event) => {
                                         setFieldValue(
-                                            "fichiers.images",
+                                            `poiDescription.${lang}.fichiers.images`,
                                             event.target.files
                                         );
                                     }}
@@ -136,7 +139,7 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                 <div className="col-lg-6">
                     <Form.Group>
                         <div className="row mb-3 align-items-center">
-                            <label htmlFor="poiDescription.videos">
+                            <label className="col-lg-4" htmlFor={`poiDescription.${lang}.fichiers.videos`}>
                                 Vidéos
                             </label>
 
@@ -145,10 +148,10 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                                     className="form-control"
                                     type="file"
                                     multiple
-                                    name="poiDescription.videos"
+                                    name="poiDescription.fichiers.videos"
                                     onChange={(event) => {
                                         setFieldValue(
-                                            "fichiers.videos",
+                                            `poiDescription.${lang}.fichiers.videos`,
                                             event.target.files
                                         );
                                     }}
@@ -163,17 +166,17 @@ const PoiDescriptionSection = ({ values, setFieldValue }) => {
                 <div className="col-lg-6">
                     <Form.Group>
                         <div className="row mb-3 align-items-center">
-                            <label htmlFor="poiDescription.audio">Audio</label>
+                            <label className="col-lg-4" htmlFor={`poiDescription.${lang}.fichiers.audio`}>Audio</label>
 
                             <div className="col-lg-8">
                                 <Field
                                     className="form-control"
                                     type="file"
                                     multiple
-                                    name="poiDescription.audio"
+                                    name="poiDescription.fichiers.audio"
                                     onChange={(event) => {
                                         setFieldValue(
-                                            "fichiers.audio",
+                                            `poiDescription.${lang}.fichiers.audio`,
                                             event.target.files
                                         );
                                     }}

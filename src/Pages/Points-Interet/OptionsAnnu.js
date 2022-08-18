@@ -1,11 +1,6 @@
-import { Field, FieldArray } from "formik";
-import { Button, Form } from "react-bootstrap";
-import {
-    FormikSelect,
-    FormikTextInput,
-    FormikTextArea,
-    FormikRadioGroup,
-} from "./FormikControls";
+import { Field } from "formik";
+import { Form } from "react-bootstrap";
+import { FormikSelect } from "../../Components/FormikControls";
 
 const OptionsAnnu = () => {
     return (
@@ -28,26 +23,25 @@ const OptionsAnnu = () => {
                     name="poiDate.recurrenceOptions.frequenceAnnu.jour"
                 />
                 <div className="d-inline-block">
-<FormikSelect
-                    name="poiDate.recurrenceOptions.frequenceAnnu.mois"
-                    label=""
-                    options={[
-                        "Janvier",
-                        "Février",
-                        "Mars",
-                        "Avril",
-                        "Mai",
-                        "Juin",
-                        "Juillet",
-                        "Août",
-                        "Septembre",
-                        "Octobre",
-                        "Novembre",
-                        "Décembre",
-                    ]}
-                />
+                    <FormikSelect
+                        name="poiDate.recurrenceOptions.frequenceAnnu.mois"
+                        label=""
+                        options={[
+                            "Janvier",
+                            "Février",
+                            "Mars",
+                            "Avril",
+                            "Mai",
+                            "Juin",
+                            "Juillet",
+                            "Août",
+                            "Septembre",
+                            "Octobre",
+                            "Novembre",
+                            "Décembre",
+                        ]}
+                    />
                 </div>
-                
             </Form.Group>
         </div>
     );

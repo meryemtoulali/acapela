@@ -32,6 +32,7 @@ function App() {
                 <Route path="/points-d-interet/table" element={<PointsInteretTable />} />
                 <Route path="/points-d-interet/liste" element={<PointsInteretListe />} />
                 <Route path="/points-d-interet/form" element={<PointsInteretForm />} />
+                <Route path="/points-d-interet/form/:id" element={<PointsInteretForm />} />
 
 
                 <Route path="/circuits" element={<Circuits />} />

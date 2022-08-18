@@ -1,6 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 function PeriodePicker({ index, periode, poiDate, dateArray, fieldName, setFieldValue }) {
 
