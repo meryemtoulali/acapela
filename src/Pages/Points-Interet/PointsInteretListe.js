@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { getPOI, deletePOI } from "../../Services/ServiceVilles";
+import { getPOI, deletePOI } from "../../Services/ServicePoi";
 import "../../Assets/Styles/CommunesVilles.css";
-import {
-    Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 class LocationCard extends Component {
     constructor(props) {
@@ -62,12 +64,15 @@ class LocationCard extends Component {
                         </div>
                         <div className="row">
                             <div className="buttons-row">
-                                <Link to={`/points-d-interet/form/${this.props.id}`}>
+                                <Link
+                                    to={`/points-d-interet/form/${this.props.id}`}
+                                >
                                     <button
                                         type="button"
                                         className="mr-2 btn btn-info btn-sm mx-2"
+                                        style={{ width: "50px" }}
                                     >
-                                        modifier
+                                        <FontAwesomeIcon icon={faPen} inverse />
                                     </button>
                                 </Link>
 
@@ -75,8 +80,9 @@ class LocationCard extends Component {
                                     type="button"
                                     className="mr-2 btn btn-danger btn-sm mx-2"
                                     onClick={this.handleShow}
+                                    style={{ width: "50px" }}
                                 >
-                                    supprimer
+                                    <FontAwesomeIcon icon={faTrash} inverse />
                                 </button>
                             </div>
                         </div>

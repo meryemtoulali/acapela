@@ -2,7 +2,9 @@ import { Accordion, Button } from "react-bootstrap";
 import * as Yup from "yup";
 import { Formik, Form as FormikForm } from "formik";
 import { Tabs, Tab } from "react-bootstrap";
-import {initialValues, validationSchema} from "./PoiFormVariables"
+import { initialValues, validationSchema } from "./PoiFormVariables";
+import { postPOI, putPOI } from "../../Services/ServicePoi";
+import { useNavigate, useParams } from "react-router-dom";
 
 import React from "react";
 import { useState } from "react";
@@ -13,30 +15,31 @@ import PoiDetailsSection from "./PoiDetailsSection";
 import PoiDescriptionSection from "./PoiDescriptionSection";
 import PoiDateSection from "./PoiDateSection";
 
+
+
 function PointsInteretForm() {
     const languages = ["fr", "ar", "en"];
     const [key, setKey] = useState(languages[0]);
-
+    const updateId = useParams().id;
+    console.log("updateID is ", updateId)
+    const navigate = useNavigate();
 
     const onSubmit = (values) => {
+        const formdata = values;
         console.log("Form data is: ", values);
+        console.log("inside funciton update id is", updateId)
+        if (updateId === undefined) {
+            console.log("updateID is undef")
+            postPOI(formdata);
+        } else {
+            console.log("updateID is not undef")
+            putPOI(formdata, updateId);
+        }
+
+        navigate("/points-d-interet/liste");
     };
 
 
-    const langValidation = Yup.object({
-
-    })
-    langValidation['fr'] = Yup.object({
-        nomPoi: Yup.string().required("Obligatoire"),
-        description: Yup.string().required("Obligatoire"),
-        descriptionAudio: Yup.string().required("Obligatoire"),
-        voix: Yup.string().required("Obligatoire"),
-        dictionnaire: Yup.string().required("Obligatoire"),
-    })
-
-    console.log(langValidation)
-
-    
 
     return (
         <div className="main-container">
@@ -70,7 +73,6 @@ function PointsInteretForm() {
                                         </h6>
                                     </Accordion.Header>
                                     <Accordion.Body>
-                                        
                                         <Tabs
                                             id="langTab"
                                             activeKey={key}
@@ -78,22 +80,20 @@ function PointsInteretForm() {
                                         >
                                             {languages.map((lang, index) => {
                                                 return (
-                                                   
-                                                        <Tab
+                                                    <Tab
                                                         key={index}
                                                         eventKey={lang}
                                                         title={lang}
                                                     >
                                                         <div className="pt-3">
                                                             <PoiDescriptionSection
-                                                            lang={lang}
-                                                            values={values}
-                                                            setFieldValue={
-                                                                setFieldValue
-                                                            }
-                                                        />
+                                                                lang={lang}
+                                                                values={values}
+                                                                setFieldValue={
+                                                                    setFieldValue
+                                                                }
+                                                            />
                                                         </div>
-                                                        
                                                     </Tab>
                                                 );
                                             })}

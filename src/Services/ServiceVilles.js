@@ -1,17 +1,6 @@
 import axios from "axios";
+import {client} from "./client"
 
-/*class ServiceVilles extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            url: "http://demo5246547.mockable.io/",
-        };
-    }
-
-    
-}*/
-
-const client = axios.create({ baseURL: "http://demo5246547.mockable.io/" });
 
 export const getVilles = async () => {
     const response = await client.get();
@@ -91,6 +80,7 @@ export const postVille =  (props) => {
 */
 
 
+//  for pointsInteretTable.js
 
 export const getPts = async (props) => {
     
@@ -138,41 +128,5 @@ export const putPts = async (props) => {
         })
         .catch((err) => {
             console.log(err);
-        });
-};
-
-export const getPOI = async (props) => {
-    
-    let getId = "";
-    if(props !== undefined) {getId = "/" + props}
-    const response = await client.get(`/poi${getId}`);
-    return response.data;
-};
-
-
-export const deletePOI = async (props) => {
-    // const id = props
-    // await client
-    //     .delete(`/${id}`)
-    //     .then((response) => {
-    //         console.log(response);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-
-
-        await client
-        .delete()  //change url later
-        .then((response) => {
-            console.log(response);
-            console.log("success! status is ", response.status);
-            
-        })
-        .catch((err) => {
-            console.log("error caught! ");
-            console.log(err);
-            console.log("error status : ", err.response.status);
-            
         });
 };

@@ -96,21 +96,7 @@ export const validationSchema = Yup.object({
             descriptionAudio: Yup.string().required("Obligatoire"),
             voix: Yup.string().required("Obligatoire"),
             dictionnaire: Yup.string().required("Obligatoire"),
-        }),
-        ar: Yup.object({
-            nomPoi: Yup.string().required("Obligatoire"),
-            description: Yup.string().required("Obligatoire"),
-            descriptionAudio: Yup.string().required("Obligatoire"),
-            voix: Yup.string().required("Obligatoire"),
-            dictionnaire: Yup.string().required("Obligatoire"),
-        }),
-        en: Yup.object({
-            nomPoi: Yup.string().required("Obligatoire"),
-            description: Yup.string().required("Obligatoire"),
-            descriptionAudio: Yup.string().required("Obligatoire"),
-            voix: Yup.string().required("Obligatoire"),
-            dictionnaire: Yup.string().required("Obligatoire"),
-        }),
+        })
     }),
     fichiers: Yup.object({
         imageParDefaut: Yup.mixed()

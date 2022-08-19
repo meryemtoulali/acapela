@@ -1,10 +1,12 @@
-.stubbornbuttons button{
-    
-    
-    
+.stubbornbuttons button {
 }
 
-.input-number{
+.input-number {
     width: 80px;
     display: inline-block;
-} 
+}
+
+
+label{
+    font-weight: 500;
+}

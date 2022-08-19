@@ -7,6 +7,12 @@ import OptionsAnnu from "./OptionsAnnu"
 import {
     FormikRadioGroup,
 } from "../../Components/FormikControls";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faPlus,
+    faTrashCan
+} from "@fortawesome/free-solid-svg-icons";
+
 
 const PoiDetailsSection = ({ values, setFieldValue }) => {
     return (
@@ -69,7 +75,7 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                                                 })
                                                             }
                                                         >
-                                                            +
+                                                            <FontAwesomeIcon icon={faPlus} />
                                                         </Button>
                                                     )}
 
@@ -81,7 +87,7 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                                                 remove(index)
                                                             }
                                                         >
-                                                            -
+                                                            <FontAwesomeIcon icon={faTrashCan} />
                                                         </Button>
                                                     )}
                                                 </div>

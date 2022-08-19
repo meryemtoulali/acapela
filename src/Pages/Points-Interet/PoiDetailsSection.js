@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { Field, ErrorMessage } from "formik";
-import { Form } from "react-bootstrap";
-import {
-    FormikSelect,
-    FormikTextInput,
-} from "../../Components/FormikControls";
+import { Form, Modal, Button } from "react-bootstrap";
+import { FormikSelect, FormikTextInput } from "../../Components/FormikControls";
 import TextError from "../../Components/TextError";
+import LeafletMap from "./LeafletMap";
+import { faMap } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const PoiDetailsSection = ({ values, setFieldValue }) => {
+    const [showMapModal, setShowMapModal] = useState(false);
+
     return (
         <div className="poiDetails">
             <div className="row align-items-center">
@@ -19,14 +23,32 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                 </div>
             </div>
 
-            <div className="row align-items-center">
+            <div className="row">
                 <div className="col-lg-6">
                     <FormikTextInput
                         name="poiDetails.coord"
                         label="Coordonnées"
                     />
                 </div>
+                <div className="col-lg-2">
+                    <Button
+                        type="button"
+                        onClick={() => {
+                            setShowMapModal(true);
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faMap} />
+                    </Button>
+                </div>{" "}
             </div>
+            <Modal
+                show={showMapModal}
+                onHide={() => {
+                    setShowMapModal(false);
+                }}
+            >
+                <LeafletMap setFieldValue={setFieldValue} />
+            </Modal>
 
             <Form.Group>
                 <div className="row mb-3 align-items-center">
@@ -105,7 +127,10 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                         );
                                     }}
                                 />
-                                <ErrorMessage name="fichiers.imageParDefaut" component={TextError} />
+                                <ErrorMessage
+                                    name="fichiers.imageParDefaut"
+                                    component={TextError}
+                                />
                             </div>
                         </div>
                     </Form.Group>
@@ -132,7 +157,10 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                         );
                                     }}
                                 />
-                                <ErrorMessage name="fichiers.videoParDefaut" component={TextError} />
+                                <ErrorMessage
+                                    name="fichiers.videoParDefaut"
+                                    component={TextError}
+                                />
                             </div>
                         </div>
                     </Form.Group>
