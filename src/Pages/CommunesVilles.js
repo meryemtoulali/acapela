@@ -6,9 +6,7 @@ import { deleteVille } from "../Services/ServiceVilles";
 import { Form, Button } from "react-bootstrap";
 import ConfirmModal from "../Components/ConfirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPen, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 class LocationCard extends Component {
     constructor(props) {
@@ -105,6 +103,7 @@ class CommunesVilles extends Component {
             data: [],
             filteredData: [],
             searchInput: "",
+            noResults: false,
         };
     }
 
@@ -127,7 +126,12 @@ class CommunesVilles extends Component {
                     .includes(searchInput.toLowerCase())
             );
         });
-        this.setState({ filteredData });
+        if (filteredData && filteredData.length) {
+            this.setState({ filteredData });
+            this.setState({ noResults: false });
+        } else {
+            this.setState({ noResults: true });
+        }
     };
 
     handleChange = (event) => {
@@ -146,7 +150,7 @@ class CommunesVilles extends Component {
     };
 
     render() {
-        let { data, filteredData, searchInput } = this.state;
+        let { data, filteredData, searchInput , noResults} = this.state;
 
         data = filteredData && filteredData.length ? filteredData : data;
 
@@ -185,7 +189,11 @@ class CommunesVilles extends Component {
                         </button>
                     </Link>
 
-                    <div className="mt-5">
+                    {noResults ? (
+                        <div className="mt-5">Aucun résultat.</div>
+                    ) : (
+
+                    <div className="mt-3">
                         {data.map((x) => (
                             <LocationCard
                                 key={x.id}
@@ -196,8 +204,8 @@ class CommunesVilles extends Component {
                                 localDelete={this.localDelete}
                             />
                         ))}
-                    </div>
-                </div>
+                    </div> )}
+                </div>                   
             </div>
         );
     }

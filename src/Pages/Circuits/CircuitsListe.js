@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getPOI, deletePOI } from "../../Services/ServicePoi";
+import { getCircuit, deleteCircuit } from "../../Services/ServiceCircuits";
 import "../../Assets/Styles/CommunesVilles.css";
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
@@ -8,7 +8,7 @@ import ConfirmModal from "../../Components/ConfirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-class LocationCard extends Component {
+class CircuitCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +18,7 @@ class LocationCard extends Component {
 
     handleDelete = async () => {
         const id = this.props.id;
-        await deletePOI(id);
+        await deleteCircuit(id);
 
         //if delete request is OK, gotta delete from local data too?
 
@@ -29,7 +29,6 @@ class LocationCard extends Component {
     handleClose = () => this.setState({ showConfirm: false });
 
     render() {
-        //let match = useRouteMatch();
         return (
             <>
                 <ConfirmModal
@@ -53,19 +52,15 @@ class LocationCard extends Component {
                         <div className="col-sm-9 mb-3">
                             <h5>{this.props.nom}</h5>
                             <div className="">
-                                {this.props.description}
+                                {this.props.statut}
                                 <br />
-                                {this.props.type}
-                                <br />
-                                {this.props.ville}
+                                {this.props.auteur}
                                 <br />
                             </div>
                         </div>
                         <div className="row">
                             <div className="buttons-row">
-                                <Link
-                                    to={`/points-d-interet/form/${this.props.id}`}
-                                >
+                                <Link to={`/circuits/form/${this.props.id}`}>
                                     <button
                                         type="button"
                                         className="mr-2 btn btn-info btn-sm mx-2"
@@ -92,7 +87,7 @@ class LocationCard extends Component {
     }
 }
 
-class PointsInteretListe extends Component {
+class CircuitsListe extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -101,34 +96,40 @@ class PointsInteretListe extends Component {
             searchNom: "",
             searchType: "",
             searchDesc: "",
-            searchVille: "",
+            searchPoi: "",
             noResults: false,
         };
     }
 
     componentDidMount() {
-        const doGetPOI = async () => {
-            const result = await getPOI();
+        const doGetCircuit = async () => {
+            const result = await getCircuit();
             this.setState({ data: result });
         };
 
-        doGetPOI();
+        doGetCircuit();
     }
 
     globalSearch = () => {
-        let { searchNom, searchType, searchDesc, searchVille, data } =
-            this.state;
+        let { searchNom, searchType, searchDesc, searchPoi, data } = this.state;
 
         let filteredData = data.filter((value) => {
             return (
-                value.nom.toLowerCase().includes(searchNom.toLowerCase()) &&
-                value.type.toLowerCase().includes(searchType.toLowerCase()) &&
-                value.description
+                value.descriptionCircuit.fr.nomCircuit
+                    .toLowerCase()
+                    .includes(searchNom.toLowerCase()) &&
+                value.detailsCircuit.typeCircuit
+                    .toLowerCase()
+                    .includes(searchType.toLowerCase()) &&
+                value.descriptionCircuit.fr.description
                     .toLowerCase()
                     .includes(searchDesc.toLowerCase()) &&
-                value.ville.toLowerCase().includes(searchVille.toLowerCase())
+                value.poiCircuit[0].nomPoi
+                    .toLowerCase()
+                    .includes(searchPoi.toLowerCase())
             );
         });
+
         if (filteredData && filteredData.length) {
             this.setState({ filteredData });
             this.setState({ noResults: false });
@@ -154,7 +155,7 @@ class PointsInteretListe extends Component {
         const deleteId = props;
 
         const newdata = this.state.data.filter(
-            (ville) => ville.id !== deleteId
+            (circuit) => circuit.id !== deleteId
         );
         this.setState({ data: newdata });
     };
@@ -166,7 +167,7 @@ class PointsInteretListe extends Component {
             searchNom,
             searchType,
             searchDesc,
-            searchVille,
+            searchPoi,
             noResults,
         } = this.state;
 
@@ -183,7 +184,7 @@ class PointsInteretListe extends Component {
                             <Col>
                                 <Form.Group>
                                     <Form.Label htmlFor="searchNom">
-                                        Nom du point d'intérêt
+                                        Nom du circuit
                                     </Form.Label>
                                     <Form.Control
                                         className="col"
@@ -197,7 +198,7 @@ class PointsInteretListe extends Component {
                             <Col>
                                 <Form.Group>
                                     <Form.Label htmlFor="searchType">
-                                        Type du point d'intérêt
+                                        Type du circuit
                                     </Form.Label>
                                     <Form.Control
                                         className="col"
@@ -213,7 +214,7 @@ class PointsInteretListe extends Component {
                             <Col>
                                 <Form.Group>
                                     <Form.Label htmlFor="searchDesc">
-                                        Description du point d'intérêt
+                                        Description du circuit
                                     </Form.Label>
                                     <Form.Control
                                         className="col"
@@ -225,13 +226,13 @@ class PointsInteretListe extends Component {
                             </Col>
                             <Col>
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchVille">
-                                        Nom de la commune/ville
+                                    <Form.Label htmlFor="searchPoi">
+                                        Nom du point d'intérêt
                                     </Form.Label>
                                     <Form.Control
                                         className="col"
-                                        name="searchVille"
-                                        value={searchVille || ""}
+                                        name="searchPoi"
+                                        value={searchPoi || ""}
                                         onChange={this.handleChange}
                                     />
                                 </Form.Group>
@@ -239,38 +240,29 @@ class PointsInteretListe extends Component {
                         </Row>
                     </fieldset>
 
-                    <div className="my-3 p-2 blueTitle">
-                        Liste des points d’intérêt
-                    </div>
-                    <div className="row">
-                        <div className="me-3">
-                            <Link to="/points-d-interet/form">
-                                <Button variant="danger">
-                                    <FontAwesomeIcon icon={faPlus} /> Ajouter un
-                                    point d'intérêt
-                                </Button>
-                            </Link>
-                        </div>
-                        <div className="mt-3">
-                            <Link to="/circuits/form">
-                                <Button variant="info">Créer un circuit</Button>
-                            </Link>
-                        </div>
-                    </div>
+                    <div className="my-3 p-2 blueTitle">Liste des circuits</div>
+
+                    <div className="my-3"></div>
+                    <Link to="/circuits/form">
+                        <Button variant="danger">
+                            <FontAwesomeIcon icon={faPlus} /> Ajouter un circuit
+                        </Button>
+                    </Link>
 
                     {noResults ? (
                         <div className="mt-5">Aucun résultat.</div>
                     ) : (
                         <div className="mt-3">
-                            {data.map((POI) => (
-                                <LocationCard
-                                    key={POI.id}
-                                    id={POI.id}
-                                    image={POI.image}
-                                    nom={POI.nom}
-                                    description={POI.description}
-                                    type={POI.type}
-                                    ville={POI.ville}
+                            {data.map((circuit) => (
+                                <CircuitCard
+                                    key={circuit.id}
+                                    id={circuit.id}
+                                    image={circuit.detailsCircuit.image}
+                                    nom={
+                                        circuit.descriptionCircuit.fr.nomCircuit
+                                    }
+                                    statut={circuit.statut}
+                                    auteur={circuit.auteur}
                                     localDelete={this.localDelete}
                                 />
                             ))}
@@ -282,4 +274,4 @@ class PointsInteretListe extends Component {
     }
 }
 
-export default PointsInteretListe;
+export default CircuitsListe;

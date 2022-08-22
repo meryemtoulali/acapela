@@ -7,7 +7,9 @@ import PointsInteretTable from "./Pages/Points-Interet/PointsInteretTable";
 import PointsInteretListe from "./Pages/Points-Interet/PointsInteretListe";
 import PointsInteretForm from "./Pages/Points-Interet/PointsInteretForm"
 
-import Circuits from "./Pages/Circuits";
+import CircuitsListe from "./Pages/Circuits/CircuitsListe";
+import CircuitsForm from "./Pages/Circuits/CircuitsForm";
+
 import Corbeille from "./Pages/Corbeille";
 import ModifierMdp from "./Pages/ModifierMdp";
 import Deconnexion from "./Pages/Deconnexion";
@@ -29,13 +31,19 @@ function App() {
                 <Route path="/" element={<Accueil />} />
                 <Route path="/espace-client" element={<EspaceClient />} />
                 <Route path="/communes-villes" element={<CommunesVilles />} />
+
+
                 <Route path="/points-d-interet/table" element={<PointsInteretTable />} />
                 <Route path="/points-d-interet/liste" element={<PointsInteretListe />} />
                 <Route path="/points-d-interet/form" element={<PointsInteretForm />} />
                 <Route path="/points-d-interet/form/:id" element={<PointsInteretForm />} />
 
 
-                <Route path="/circuits" element={<Circuits />} />
+                <Route path="/circuits/liste" element={<CircuitsListe />} />
+                <Route path="/circuits/form" element={<CircuitsForm />} />
+                <Route path="/circuits/form/:id" element={<CircuitsForm />} />
+
+
                 <Route path="/corbeille" element={<Corbeille />} />
                 <Route path="/ajouter-ville" element={<AjouterVille />} />
                 <Route path="/ajouter-ville/:id" element={<AjouterVille />} />

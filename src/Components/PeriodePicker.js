@@ -2,7 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import { Form } from "react-bootstrap";
 
-function PeriodePicker({ index, periode, poiDate, dateArray, fieldName, setFieldValue }) {
+function PeriodePicker({ index, dateArray, fieldName, setFieldValue }) {
 
 
     return (

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import menu from "../Assets/Images/hamburger-menu.svg";
 import "../Assets/Styles/Sidebar.css";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faCircleUser, faLandmark, faLocationPin, faMap, faTrash, faLock, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
 
 class SideBar extends Component {
     render() {
@@ -11,53 +14,53 @@ class SideBar extends Component {
                     <ul>
                         <li>
                             <NavLink to="/">
-                                <img src={menu} alt="" />
+                                <FontAwesomeIcon className="me-2" icon={faHouse}/>
                                 Accueil
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/espace-client">
-                                <img src={menu} alt="" />
+                            <FontAwesomeIcon className="me-2"icon={faCircleUser}/>
                                 Espace client
                             </NavLink>
                         </li>
 
                         <li>
                             <NavLink to="/communes-villes">
-                                <img src={menu} alt="" />
+                            <FontAwesomeIcon className="me-2"icon={faLandmark}/>
                                 Communes / Villes
                             </NavLink>
                         </li>
 
                         <li>
                             <NavLink to="/points-d-interet/liste">
-                                <img src={menu} alt="" />
+                            <FontAwesomeIcon className="me-2"icon={faLocationPin}/>
                                 Points d'intérêt
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/circuits">
-                                <img src={menu} alt="" />
+                            <NavLink to="/circuits/liste">
+                            <FontAwesomeIcon className="me-2"icon={faMap}/>
                                 Circuits
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/corbeille">
-                                <img src={menu} alt="" />
+                            <FontAwesomeIcon className="me-2"icon={faTrash}/>
                                 Corbeille
                             </NavLink>
                         </li>
 
                         <li>
                             <NavLink to="/modifier-mot-de-passe">
-                                <img src={menu} alt="" />
+                            <FontAwesomeIcon className="me-2"icon={faLock}/>
                                 Modifier mon mot de passe
                             </NavLink>
                         </li>
 
                         <li>
                             <NavLink to="/deconnexion">
-                                <img src={menu} alt="" />
+                            <FontAwesomeIcon className="me-2"icon={faArrowRightFromBracket}/>
                                 Déconnexion
                             </NavLink>
                         </li>

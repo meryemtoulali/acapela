@@ -1,31 +1,23 @@
 import { FieldArray } from "formik";
 import { Button, Form } from "react-bootstrap";
 import PeriodePicker from "../../Components/PeriodePicker";
-import OptionsHebdo from "./OptionsHebdo";
-import OptionsMensu from "./OptionsMensu";
-import OptionsAnnu from "./OptionsAnnu"
-import {
-    FormikRadioGroup,
-} from "../../Components/FormikControls";
+import { OptionsHebdo, OptionsMensu, OptionsAnnu } from "./OptionsRecurrence";
+import { FormikRadioGroup } from "../../Components/FormikControls";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faPlus,
-    faTrashCan
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-
-const PoiDetailsSection = ({ values, setFieldValue }) => {
+const CircuitDateSection = ({ values, setFieldValue }) => {
     return (
         <div className="poiDate">
             <div className="row align-items-center">
-            <div className="col-lg-6 mb-3">
+                <div className="col-lg-6 mb-3">
                     Souhaitez-vous définir des périodes libres ou une
                     réccurrence ?
                 </div>
 
                 <div className="col-lg-6 mb-3">
                     <FormikRadioGroup
-                        name="poiDate.isRecurrence"
+                        name="dateCircuit.isRecurrence"
                         values={["false", "true"]}
                         labels={["Périodes libres", "Réccurrence"]}
                         isInline={true}
@@ -33,15 +25,15 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                 </div>
             </div>
 
-            {values.poiDate.isRecurrence === "false" && (
+            {values.dateCircuit.isRecurrence === "false" && (
                 <div className="periode-libre-section">
                     <Form.Group>
-                        <FieldArray name="poiDate.periodes">
+                        <FieldArray name="dateCircuit.periodes">
                             {(fieldArrayProps) => {
                                 const { push, remove, form } = fieldArrayProps;
                                 const { values } = form;
-                                const { poiDate } = values;
-                                const { periodes } = poiDate;
+                                const { dateCircuit } = values;
+                                const { periodes } = dateCircuit;
                                 return (
                                     <div className="stubbornbuttons row mb-3 align-items-center">
                                         {periodes.map((oneperiode, index) => (
@@ -53,9 +45,9 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                                     <PeriodePicker
                                                         index={index}
                                                         dateArray={
-                                                            poiDate.periodes
+                                                            dateCircuit.periodes
                                                         }
-                                                        fieldName="poiDate.periodes"
+                                                        fieldName="dateCircuit.periodes"
                                                         setFieldValue={
                                                             setFieldValue
                                                         }
@@ -75,7 +67,9 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                                                 })
                                                             }
                                                         >
-                                                            <FontAwesomeIcon icon={faPlus} />
+                                                            <FontAwesomeIcon
+                                                                icon={faPlus}
+                                                            />
                                                         </Button>
                                                     )}
 
@@ -87,7 +81,11 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                                                 remove(index)
                                                             }
                                                         >
-                                                            <FontAwesomeIcon icon={faTrashCan} />
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faTrashCan
+                                                                }
+                                                            />
                                                         </Button>
                                                     )}
                                                 </div>
@@ -101,14 +99,14 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                 </div>
             )}
 
-            {values.poiDate.isRecurrence === "true" && (
+            {values.dateCircuit.isRecurrence === "true" && (
                 <div className="recurrence-section">
                     <Form.Group>
-                        <FieldArray name="poiDate.periodes">
+                        <FieldArray name="dateCircuit.periodes">
                             {(fieldArrayProps) => {
                                 const { form } = fieldArrayProps;
                                 const { values } = form;
-                                const { poiDate } = values;
+                                const { dateCircuit } = values;
                                 return (
                                     <div className="stubbornbuttons row">
                                         <div className="row mb-3">
@@ -116,11 +114,11 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                                                 <PeriodePicker
                                                     index={0}
                                                     dateArray={
-                                                        poiDate
+                                                        dateCircuit
                                                             .recurrenceOptions
                                                             .dates
                                                     }
-                                                    fieldName="poiDate.recurrenceOptions.dates"
+                                                    fieldName="dateCircuit.recurrenceOptions.dates"
                                                     setFieldValue={
                                                         setFieldValue
                                                     }
@@ -136,7 +134,7 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                     <div className="row">
                         <div className="col-12 col-md-4 mb-3 mb-md-0">
                             <FormikRadioGroup
-                                name="poiDate.recurrenceOptions.frequenceType"
+                                name="dateCircuit.recurrenceOptions.frequenceType"
                                 values={[
                                     "Hebdomadaire",
                                     "Mensuelle",
@@ -151,14 +149,20 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
                         </div>
 
                         <div className="col-12 col-sm-8">
-                            {values.poiDate.recurrenceOptions.frequenceType ===
-                                "Hebdomadaire" && <OptionsHebdo />}
+                            {values.dateCircuit.recurrenceOptions
+                                .frequenceType === "Hebdomadaire" && (
+                                <OptionsHebdo />
+                            )}
 
-                            {values.poiDate.recurrenceOptions.frequenceType ===
-                                "Mensuelle" && <OptionsMensu />}
+                            {values.dateCircuit.recurrenceOptions
+                                .frequenceType === "Mensuelle" && (
+                                <OptionsMensu />
+                            )}
 
-                            {values.poiDate.recurrenceOptions.frequenceType ===
-                                "Annuelle" && <OptionsAnnu />}
+                            {values.dateCircuit.recurrenceOptions
+                                .frequenceType === "Annuelle" && (
+                                <OptionsAnnu />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -167,7 +171,7 @@ const PoiDetailsSection = ({ values, setFieldValue }) => {
     );
 };
 
-export default PoiDetailsSection;
+export default CircuitDateSection;
 
 //on submit check isRecurrence
 //if true, don't submit poiDate.recurrenceOptions
