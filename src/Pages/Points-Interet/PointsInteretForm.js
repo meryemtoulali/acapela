@@ -1,5 +1,4 @@
 import { Accordion, Button } from "react-bootstrap";
-import * as Yup from "yup";
 import { Formik, Form as FormikForm } from "formik";
 import { Tabs, Tab } from "react-bootstrap";
 import { initialValues, validationSchema } from "./PoiFormVariables";

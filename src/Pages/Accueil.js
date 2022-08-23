@@ -5,8 +5,8 @@ class Banner extends Component {
     render() {
         return (
             <div className="banner">
-                <div className="red-circle"></div>
-                <div className="message">Votre voix compte</div>
+                {/* <div className="red-circle"></div>
+                <div className="message">Votre voix compte</div> */}
             </div>
         );
     }

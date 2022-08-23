@@ -2,54 +2,50 @@ import * as Yup from "yup";
 
 export const initialValues = {
     id: "",
-    isFerme : "",
+    isFerme: false,
     detailsCircuit: {
         modeTransport: "",
         typeCircuit: "",
-        image : null
-      },
+        image: null,
+    },
     descriptionCircuit: {
-          fr:{
+        fr: {
             nomCircuit: "",
-            description: ""
-            },
-          en:{
-            nomCircuit: "",
-            description: ""
-            },
-          es:{
-            nomCircuit: "",
-            description: ""
-            }
+            description: "",
         },
+        en: {
+            nomCircuit: "",
+            description: "",
+        },
+        es: {
+            nomCircuit: "",
+            description: "",
+        },
+    },
     dateCircuit: {
-          isRecurrence: "false",
-          periodes : [{ dateDebut: "", dateFin: "" }],
-          recurrenceOptions: {
-              dates: [{ dateDebut: "", dateFin: "" }],
-              frequenceType: "Hebdomadaire",
-              frequenceHebdo: {
-                  nbrSemaines: "",
-                  jours: []
-              },
-              frequenceMensu: {
-                  nbrMois: "",
-                  jour: ""
-              },
-              frequenceAnnu: {
-                  nbrAns: "",
-                  jour: "",
-                  mois: ""
-              }
-          }
+        isRecurrence: "false",
+        periodes: [{ dateDebut: "", dateFin: "" }],
+        recurrenceOptions: {
+            dates: [{ dateDebut: "", dateFin: "" }],
+            frequenceType: "Hebdomadaire",
+            frequenceHebdo: {
+                nbrSemaines: "",
+                jours: [],
+            },
+            frequenceMensu: {
+                nbrMois: "",
+                jour: "",
+            },
+            frequenceAnnu: {
+                nbrAns: "",
+                jour: "",
+                mois: "",
+            },
         },
-    poiCircuit: [
-      {nomPoi: "", coord: ""}
-      ]
-      
-  };
-
-
+    },
+    communeVille: "",
+    poiCircuit: [],
+};
 
 export const validationSchema = Yup.object({
     poiDetails: Yup.object({
@@ -67,7 +63,7 @@ export const validationSchema = Yup.object({
             descriptionAudio: Yup.string().required("Obligatoire"),
             voix: Yup.string().required("Obligatoire"),
             dictionnaire: Yup.string().required("Obligatoire"),
-        })
+        }),
     }),
     fichiers: Yup.object({
         imageParDefaut: Yup.mixed()
@@ -91,6 +87,3 @@ export const validationSchema = Yup.object({
             }),
     }),
 });
-
-
-

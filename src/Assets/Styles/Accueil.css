@@ -1,4 +1,4 @@
-.banner {
+/* .banner {
     height: 700px;
     background-color: rgb(212, 212, 212);
     overflow: hidden;
@@ -34,4 +34,12 @@
     width: 500px;
     letter-spacing: 5px;
     padding: 20px;
+} */
+
+.banner {
+    width: 100%;
+    min-height: 90vh;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../Images/accueil.png");
 }

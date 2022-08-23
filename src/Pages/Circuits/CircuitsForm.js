@@ -13,32 +13,29 @@ import "../../Assets/Styles/PointsInteretForm.css";
 import CircuitDetailsSection from "./CircuitDetailsSection";
 import CircuitDescriptionSection from "./CircuitDescriptionSection";
 import CircuitDateSection from "./CircuitDateSection";
-
-
+import CircuitPoiSection from "./CircuitPoiSection";
 
 function CircuitsForm() {
     const languages = ["fr", "en", "es"];
     const [key, setKey] = useState(languages[0]);
     const updateId = useParams().id;
-    console.log("updateID is ", updateId)
+    console.log("updateID is ", updateId);
     const navigate = useNavigate();
 
     const onSubmit = (values) => {
         const formdata = values;
         console.log("Form data is: ", values);
-        console.log("inside funciton update id is", updateId)
+        console.log("inside funciton update id is", updateId);
         if (updateId === undefined) {
-            console.log("updateID is undef")
+            console.log("updateID is undef");
             postCircuit(formdata);
         } else {
-            console.log("updateID is not undef")
+            console.log("updateID is not undef");
             putCircuit(formdata, updateId);
         }
 
         navigate("/circuits/liste");
     };
-
-
 
     return (
         <div className="main-container">
@@ -85,13 +82,13 @@ function CircuitsForm() {
                                                         title={lang}
                                                     >
                                                         <div className="pt-3">
-                                                             <CircuitDescriptionSection
+                                                            <CircuitDescriptionSection
                                                                 lang={lang}
                                                                 values={values}
                                                                 setFieldValue={
                                                                     setFieldValue
                                                                 }
-                                                            /> 
+                                                            />
                                                         </div>
                                                     </Tab>
                                                 );
@@ -113,9 +110,27 @@ function CircuitsForm() {
                                         />
                                     </Accordion.Body>
                                 </Accordion.Item>
-                            </Accordion>
 
-                            <Button type="submit">Valider</Button>
+                                <Accordion.Item eventKey="3">
+                                    <Accordion.Header>
+                                        <h6 style={{ color: "red" }}>
+                                            Points d'intérêt du circuit
+                                        </h6>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <CircuitPoiSection
+                                            values={values}
+                                            setFieldValue={setFieldValue}
+                                        />
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                            <div className="d-flex flex-row justify-content-end mt-3">
+                                <Button className="me-3" type="submit">Enregistrer</Button>
+                                <Button variant="secondary" onClick={ () => navigate("/circuits/liste")} type="button">
+                                    Annuler
+                                </Button>
+                            </div>
                         </FormikForm>
                     )}
                 </Formik>
@@ -128,4 +143,3 @@ function CircuitsForm() {
 //if false, don't submit poiDate.periodes
 
 export default CircuitsForm;
-

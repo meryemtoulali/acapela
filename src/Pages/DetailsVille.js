@@ -1,7 +1,5 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
-import { Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "../Assets/Styles/CommunesVilles.css"
 
 

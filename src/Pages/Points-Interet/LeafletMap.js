@@ -1,14 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
     MapContainer,
     Marker,
     TileLayer,
     useMapEvents,
-    Popup,
 } from "react-leaflet";
 import "../../Assets/Styles/LeafletMap.css";
-import { useState, useEffect } from "react";
-
 
 const LeafletMap = ({ inputCoord, setFieldValue }) => {
     const [initialPosition, setInitialPosition] = useState([
