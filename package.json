@@ -13,6 +13,8 @@
     "bootstrap": "^5.2.0",
     "formik": "^2.2.9",
     "leaflet": "^1.8.0",
+    "leaflet-routing-machine": "^3.2.12",
+    "lrm-google": "^1.0.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
