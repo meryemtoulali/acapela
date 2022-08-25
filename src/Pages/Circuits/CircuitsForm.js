@@ -2,10 +2,9 @@ import { Accordion, Button } from "react-bootstrap";
 import { Formik, Form as FormikForm } from "formik";
 import { Tabs, Tab } from "react-bootstrap";
 import { initialValues, validationSchema } from "./CircuitsFormVariables";
-import { postCircuit, putCircuit } from "../../Services/ServiceCircuits";
+import { getPoiMapPositions, postCircuit, putCircuit } from "../../Services/ServiceCircuits";
 import { useNavigate, useParams } from "react-router-dom";
-
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -16,6 +15,7 @@ import CircuitDateSection from "./CircuitDateSection";
 import CircuitPoiSection from "./CircuitPoiSection";
 
 function CircuitsForm() {
+    // const [poiMapPositions, setPoiMapPositions] = useState()
     const languages = ["fr", "en", "es"];
     const [key, setKey] = useState(languages[0]);
     const updateId = useParams().id;
@@ -37,9 +37,25 @@ function CircuitsForm() {
         navigate("/circuits/liste");
     };
 
+    // useEffect (()=> {
+    //     console.log("in useeffect")
+    //     const doGetPoiMapPositions = async () => {
+    //         const result = await getPoiMapPositions();
+    //        setPoiMapPositions(result);
+    //     };
+
+    //     doGetPoiMapPositions();
+    // }, [] )
+
     return (
         <div className="main-container">
             <div className="inner-container">
+            {updateId && (
+                    <h5 className="page-title"> Modifier le circuit</h5>
+                )}
+                {!updateId && (
+                    <h5 className="page-title"> Créer un circuit</h5>
+                )}
                 <Formik
                     initialValues={initialValues}
                     onSubmit={onSubmit}
@@ -50,7 +66,7 @@ function CircuitsForm() {
                             <Accordion defaultActiveKey="0">
                                 <Accordion.Item eventKey="0">
                                     <Accordion.Header>
-                                        <h6 style={{ color: "red" }}>
+                                        <h6>
                                             Détails du circuit
                                         </h6>
                                     </Accordion.Header>
@@ -64,7 +80,7 @@ function CircuitsForm() {
 
                                 <Accordion.Item eventKey="1">
                                     <Accordion.Header>
-                                        <h6 style={{ color: "red" }}>
+                                        <h6>
                                             Description du circuit
                                         </h6>
                                     </Accordion.Header>
@@ -99,7 +115,7 @@ function CircuitsForm() {
 
                                 <Accordion.Item eventKey="2">
                                     <Accordion.Header>
-                                        <h6 style={{ color: "red" }}>
+                                        <h6 >
                                             Date du circuit
                                         </h6>
                                     </Accordion.Header>
@@ -113,14 +129,15 @@ function CircuitsForm() {
 
                                 <Accordion.Item eventKey="3">
                                     <Accordion.Header>
-                                        <h6 style={{ color: "red" }}>
+                                        <h6 >
                                             Points d'intérêt du circuit
                                         </h6>
                                     </Accordion.Header>
                                     <Accordion.Body>
-                                        <CircuitPoiSection
+                                       <CircuitPoiSection
                                             values={values}
                                             setFieldValue={setFieldValue}
+                                            // poiMapPositions = {poiMapPositions}
                                         />
                                     </Accordion.Body>
                                 </Accordion.Item>

@@ -1,13 +1,16 @@
-import {client} from "./client"
-
-
-
-
+import { client } from "./client";
 
 export const getCircuit = async (props) => {
     let getId = "";
-    if(props !== undefined) {getId = "/" + props}
+    if (props !== undefined) {
+        getId = "/" + props;
+    }
     const response = await client.get(`/circuit${getId}`);
+    return response.data;
+};
+
+export const getPoiMapPositions = async (props) => {
+    const response = await client.get(`/poiMapPositions`);
     return response.data;
 };
 
@@ -23,7 +26,7 @@ export const postCircuit = async (props) => {
         });
 };
 
-export const putCircuit = async ({formdata, updateId}) => {
+export const putCircuit = async ({ formdata, updateId }) => {
     // do something with updateId here
     await client
         .put(formdata)
@@ -46,9 +49,8 @@ export const deleteCircuit = async (props) => {
     //         console.log(err);
     //     });
 
-
-        await client
-        .delete()  //add more to url later
+    await client
+        .delete() //add more to url later
 
         .then((response) => {
             console.log(response);
@@ -59,6 +61,5 @@ export const deleteCircuit = async (props) => {
             console.log("error caught! ");
             console.log(err);
             console.log("error status : ", err.response.status);
-            
         });
 };

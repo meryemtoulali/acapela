@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getPOI, deletePOI } from "../../Services/ServicePoi";
-import "../../Assets/Styles/CommunesVilles.css";
+import "../../Assets/Styles/ListePage.css";
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";
@@ -41,9 +41,9 @@ class LocationCard extends Component {
                     }}
                 />
 
-                <div className="location-card mb-3 p-2">
+                <div className="location-card mb-3">
                     <div className="row">
-                        <div className="col-sm-3">
+                        <div className="col-sm-3 mb-2">
                             <img
                                 className="w-100"
                                 src={this.props.image}
@@ -61,29 +61,27 @@ class LocationCard extends Component {
                                 <br />
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="buttons-row">
-                                <Link
-                                    to={`/points-d-interet/form/${this.props.id}`}
-                                >
-                                    <button
-                                        type="button"
-                                        className="mr-2 btn btn-info btn-sm mx-2"
-                                        style={{ width: "50px" }}
-                                    >
-                                        <FontAwesomeIcon icon={faPen} inverse />
-                                    </button>
-                                </Link>
-
+                    </div>
+                    <div className="d-flex flex-row justify-content-end">
+                        <div className="">
+                            <Link
+                                to={`/points-d-interet/form/${this.props.id}`}
+                            >
                                 <button
                                     type="button"
-                                    className="mr-2 btn btn-danger btn-sm mx-2"
-                                    onClick={this.handleShow}
-                                    style={{ width: "50px" }}
+                                    className="me-3 btn btn-primary"
                                 >
-                                    <FontAwesomeIcon icon={faTrash} inverse />
+                                    <FontAwesomeIcon icon={faPen} inverse />
                                 </button>
-                            </div>
+                            </Link>
+
+                            <button
+                                type="button"
+                                className="btn btn-secondary "
+                                onClick={this.handleShow}
+                            >
+                                <FontAwesomeIcon icon={faTrash} inverse />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -175,85 +173,112 @@ class PointsInteretListe extends Component {
         return (
             <div className="main-container">
                 <div className="inner-container">
-                    <fieldset className="fieldset-ville">
-                        <div className="fieldset-ville-titre">
+                    <h5 className="page-title">
+                        Points d'intérêt
+                    </h5>
+                    <fieldset className="fieldset-recherche">
+                        <div className="fieldset-recherche-titre">
                             Moteur de recherche
                         </div>
-                        <Row>
-                            <Col>
+                        <div className="row mb-sm-3">
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchNom">
-                                        Nom du point d'intérêt
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchNom"
-                                        value={searchNom || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row align-items-center">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchNom"
+                                        >
+                                            Nom du point d'intérêt
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchNom"
+                                                value={searchNom || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
+                            </div>
 
-                            <Col>
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchType">
-                                        Type du point d'intérêt
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchType"
-                                        value={searchType || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row align-items-center">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchType"
+                                        >
+                                            Type du point d'intérêt
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchType"
+                                                value={searchType || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
 
-                        <Row>
-                            <Col>
+                        <div className="row">
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchDesc">
-                                        Description du point d'intérêt
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchDesc"
-                                        value={searchDesc || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row ">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchDesc"
+                                        >
+                                            Description du point d'intérêt
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchDesc"
+                                                value={searchDesc || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
-                            <Col>
+                            </div>
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchVille">
-                                        Nom de la commune/ville
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchVille"
-                                        value={searchVille || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row align-items-center">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchVille"
+                                        >
+                                            Nom de la commune/ville
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchVille"
+                                                value={searchVille || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                     </fieldset>
 
-                    <div className="my-3 p-2 blueTitle">
+                    {/* <div className="my-3 p-2 blueTitle">
                         Liste des points d’intérêt
-                    </div>
-                    <div className="row">
-                        <div className="me-3">
+                    </div> */}
+                    <div className="d-flex flex-column flex-sm-row justify-content-start">
+                        <div className="me-3 mb-3">
                             <Link to="/points-d-interet/form">
-                                <Button variant="danger">
+                                <Button variant="primary">
                                     <FontAwesomeIcon icon={faPlus} /> Ajouter un
                                     point d'intérêt
                                 </Button>
                             </Link>
                         </div>
-                        <div className="mt-3">
+                        <div>
                             <Link to="/circuits/form">
-                                <Button variant="info">Créer un circuit</Button>
+                                <Button variant="secondary">Créer un circuit</Button>
                             </Link>
                         </div>
                     </div>

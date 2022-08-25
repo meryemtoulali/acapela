@@ -1,15 +1,13 @@
-import { postVille, putVille } from "../Services/ServiceVilles";
+import { postVille, putVille } from "../../Services/ServiceVilles";
 import { Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 
 export const AjouterVille = (props) => {
-
     const updateId = useParams().id;
     //const itemId = navigation.getParam('itemId', 'NO-ID');
     const [nomVille, setNomVille] = useState("");
     const [descriptionVille, setDescriptionVille] = useState("");
-
     const [image, setImage] = useState("");
 
     const navigate = useNavigate();
@@ -18,16 +16,20 @@ export const AjouterVille = (props) => {
         e.preventDefault();
 
         const formdata = new FormData();
-        if(updateId !== undefined) {formdata.append("id", nomVille);}
+        if (updateId !== undefined) {
+            formdata.append("id", nomVille);
+        }
         formdata.append("city", nomVille);
         formdata.append("description", descriptionVille);
         formdata.append("image", image);
 
-        if(updateId !== undefined) {putVille(formdata)}
-        else { postVille(formdata);}
+        if (updateId !== undefined) {
+            putVille(formdata);
+        } else {
+            postVille(formdata);
+        }
 
-
-        navigate('/communes-villes');
+        navigate("/communes-villes");
     };
     const handleChange = (e) => {
         if (e.target.name === "nomVille") {
@@ -45,8 +47,10 @@ export const AjouterVille = (props) => {
     return (
         <div className="main-container">
             <div className="inner-container">
-                <h5>Créer une commune/ville</h5>
-                <Form onSubmit={handleSubmit}>
+                
+                    {updateId && (<h5 className="page-title"> Modifier la commune/ville</h5>)}
+                    {!updateId && (<h5 className="page-title"> Créer une commune/ville</h5>)}
+                    <Form onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="col-7">
                             <Form.Group>
@@ -85,12 +89,15 @@ export const AjouterVille = (props) => {
                         />
                     </Form.Group>
 
-                    <br />
-
-                    <button className="btn btn-success mx-5" type="submit">
-                        Valider
-                    </button>
-                    <button className="btn btn-secondary mx-5">Annuler</button>
+                    <div className="d-flex flex-row justify-content-end mt-2">
+                        <button className="btn btn-primary me-2" type="submit">
+                            Valider
+                        </button>
+                            <button className="btn btn-secondary "
+                            onClick={ () => navigate("/communes-villes")}>
+                                Annuler
+                            </button>
+                    </div>
                 </Form>
             </div>
         </div>

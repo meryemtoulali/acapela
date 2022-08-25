@@ -2,6 +2,7 @@ import { Field, FieldArray } from "formik";
 import { FormikSelect } from "../../Components/FormikControls";
 import CircuitMap from "./CircuitMap";
 import "../../Assets/Styles/CircuitsForm.css";
+import DraggablePoiList from "./DraggablePoiList";
 
 const CircuitPoiSection = ({ values, setFieldValue }) => {
     const poiMapPositions = [
@@ -37,6 +38,7 @@ const CircuitPoiSection = ({ values, setFieldValue }) => {
         },
     ];
 
+    console.log("poiMapPositions in circuitPoiSection.j is", poiMapPositions);
     return (
         <div className="CircuitDetails">
             <div className="row align-items-center">
@@ -78,27 +80,10 @@ const CircuitPoiSection = ({ values, setFieldValue }) => {
                     </FieldArray>
                 </div>
                 <div className="col-4">
-                    <div className="card ">
-                        <div className="card-header">
-                            Points d'intérêt sélectionnés
-                        </div>
-                        <div className="card-body">
-                            <div className="card-text">
-                                {values.poiCircuit.length > 0 &&(
-                                    <ol type="1">
-                                    {values.poiCircuit.map((poi, index) => {
-                                        return (
-                                            <li key={index}>
-                                                {poi.nomPoi}
-                                            </li>
-                                        );
-                                    })}
-                                </ol>
-                                )}
-                                
-                            </div>
-                        </div>
-                    </div>
+                    <DraggablePoiList
+                        poiList={values.poiCircuit}
+                        setFieldValue={setFieldValue}
+                    />
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { getCircuit, deleteCircuit } from "../../Services/ServiceCircuits";
-import "../../Assets/Styles/CommunesVilles.css";
+import "../../Assets/Styles/ListePage.css";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -40,9 +40,9 @@ class CircuitCard extends Component {
                     }}
                 />
 
-                <div className="location-card mb-3 p-2">
+                <div className="location-card mb-3">
                     <div className="row">
-                        <div className="col-sm-3">
+                        <div className="col-sm-3 mb-2">
                             <img
                                 className="w-100"
                                 src={this.props.image}
@@ -59,12 +59,11 @@ class CircuitCard extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="buttons-row">
+                            <div className="d-flex flex-row justify-content-end">
                                 <Link to={`/circuits/form/${this.props.id}`}>
                                     <button
                                         type="button"
-                                        className="mr-2 btn btn-info btn-sm mx-2"
-                                        style={{ width: "50px" }}
+                                        className="me-3 btn btn-primary "
                                     >
                                         <FontAwesomeIcon icon={faPen} inverse />
                                     </button>
@@ -72,9 +71,8 @@ class CircuitCard extends Component {
 
                                 <button
                                     type="button"
-                                    className="mr-2 btn btn-danger btn-sm mx-2"
+                                    className="btn btn-secondary"
                                     onClick={this.handleShow}
-                                    style={{ width: "50px" }}
                                 >
                                     <FontAwesomeIcon icon={faTrash} inverse />
                                 </button>
@@ -176,78 +174,108 @@ class CircuitsListe extends Component {
         return (
             <div className="main-container">
                 <div className="inner-container">
-                    <fieldset className="fieldset-ville">
-                        <div className="fieldset-ville-titre">
+                    <h6 className="page-title">Circuits</h6>
+                    <fieldset className="fieldset-recherche">
+                        <div className="fieldset-recherche-titre">
                             Moteur de recherche
                         </div>
-                        <Row>
-                            <Col>
+                        <div className="row mb-sm-3">
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchNom">
-                                        Nom du circuit
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchNom"
-                                        value={searchNom || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row align-items-center">
+                                        <Form.Label
+                                            htmlFor="searchNom"
+                                            className="col-lg-4"
+                                        >
+                                            Nom du circuit
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchNom"
+                                                value={searchNom || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
+                            </div>
 
-                            <Col>
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchType">
-                                        Type du circuit
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchType"
-                                        value={searchType || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row align-items-center">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchType"
+                                        >
+                                            Type du circuit
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchType"
+                                                value={searchType || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
 
-                        <Row>
-                            <Col>
+                        <div className="row">
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchDesc">
-                                        Description du circuit
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchDesc"
-                                        value={searchDesc || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    <div className="row ">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchDesc"
+                                        >
+                                            Description du circuit
+                                        </Form.Label>
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                className="col"
+                                                name="searchDesc"
+                                                value={searchDesc || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
-                            <Col>
+                            </div>
+
+                            <div className="col-md-6">
                                 <Form.Group>
-                                    <Form.Label htmlFor="searchPoi">
-                                        Nom du point d'intérêt
-                                    </Form.Label>
-                                    <Form.Control
-                                        className="col"
-                                        name="searchPoi"
-                                        value={searchPoi || ""}
-                                        onChange={this.handleChange}
-                                    />
+                                    {" "}
+                                    <div className="row align-items-center">
+                                        <Form.Label
+                                            className="col-lg-4"
+                                            htmlFor="searchPoi"
+                                        >
+                                            Nom du point d'intérêt
+                                        </Form.Label>{" "}
+                                        <div className="col-lg-8">
+                                            <Form.Control
+                                                name="searchPoi"
+                                                value={searchPoi || ""}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+                                    </div>
                                 </Form.Group>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                     </fieldset>
 
-                    <div className="my-3 p-2 blueTitle">Liste des circuits</div>
+                    {/* <div className="my-3 p-2 blueTitle">Liste des circuits</div> */}
 
-                    <div className="my-3"></div>
-                    <Link to="/circuits/form">
-                        <Button variant="danger">
+                    <div className="mb-4">
+                        <Link to="/circuits/form">
+                        <Button variant="primary">
                             <FontAwesomeIcon icon={faPlus} /> Ajouter un circuit
                         </Button>
                     </Link>
+                    </div>
+                    
 
                     {noResults ? (
                         <div className="mt-5">Aucun résultat.</div>

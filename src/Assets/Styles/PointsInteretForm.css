@@ -3,7 +3,30 @@
     display: inline-block;
 }
 
-
-label{
+label {
     font-weight: 500;
+}
+
+.accordion-button:link,
+.accordion-button:visited,
+.accordion-button:hover,
+.accordion-button:focus,
+.accordion-button:active,
+.accordion-button:not(.collapsed) {
+    background-color: #ffffff !important;
+    color: rgb(235, 0, 0) !important;
+    text-decoration: none !important;
+    border: hidden !important;
+    
+}
+
+.accordion-button:focus {
+    outline: none !important;
+    box-shadow: none;
+    z-index: 0
+}
+
+h6{
+    color: red;
+    font-weight: 500
 }

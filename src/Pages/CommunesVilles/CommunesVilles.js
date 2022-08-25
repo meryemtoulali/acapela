@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import { getVilles } from "../Services/ServiceVilles";
-import "../Assets/Styles/CommunesVilles.css";
+import { getVilles } from "../../Services/ServiceVilles";
+import "../../Assets/Styles/ListePage.css";
 import { Link } from "react-router-dom";
-import { deleteVille } from "../Services/ServiceVilles";
+import { deleteVille } from "../../Services/ServiceVilles";
 import { Form, Button } from "react-bootstrap";
-import ConfirmModal from "../Components/ConfirmModal";
+import ConfirmModal from "../../Components/ConfirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPen, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+    faTrash,
+    faPen,
+    faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 class LocationCard extends Component {
     constructor(props) {
@@ -41,9 +45,9 @@ class LocationCard extends Component {
                     }}
                 />
 
-                <div className="location-card mb-3 p-2">
+                <div className="location-card mb-3">
                     <div className="row">
-                        <div className="col-sm-3">
+                        <div className="col-sm-3 mb-2">
                             <img
                                 className="w-100"
                                 src={this.props.image}
@@ -54,40 +58,42 @@ class LocationCard extends Component {
                             <h5>{this.props.city}</h5>
                             <div className="">{this.props.description}</div>
                         </div>
-                        <div className="row">
-                            <div className="buttons-row">
-                                <Link to={`/details/1`}>
-                                    <button
-                                        type="button"
-                                        className="mr-2 btn btn-secondary btn-sm mx-2"
-                                        style={{ width: "50px" }}
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={faMagnifyingGlass}
-                                            inverse
-                                        />
-                                    </button>
-                                </Link>
+                    </div>
 
-                                <Link to={`/ajouter-ville/${this.props.id}`}>
-                                    <button
-                                        type="button"
-                                        className="mr-2 btn btn-info btn-sm mx-2"
-                                        style={{ width: "50px" }}
-                                    >
-                                        <FontAwesomeIcon icon={faPen} inverse />
-                                    </button>
-                                </Link>
-
+                    <div className="d-flex flex-row justify-content-end">
+                        <div className="">
+                            <Link to={`/details/1`}>
                                 <button
                                     type="button"
-                                    className="mr-2 btn btn-danger btn-sm mx-2"
-                                    onClick={this.handleShow}
-                                    style={{ width: "50px" }}
+                                    className="me-3 btn btn-info"
                                 >
-                                    <FontAwesomeIcon icon={faTrash} inverse />
+                                    <FontAwesomeIcon
+                                        icon={faMagnifyingGlass}
+                                        inverse
+                                    />
                                 </button>
-                            </div>
+                            </Link>
+                        </div>
+
+                        <div className="">
+                            <Link to={`/ajouter-ville/${this.props.id}`}>
+                                <button
+                                    type="button"
+                                    className="me-3 btn btn-primary"
+                                >
+                                    <FontAwesomeIcon icon={faPen} inverse />
+                                </button>
+                            </Link>
+                        </div>
+
+                        <div className="">
+                            <button
+                                type="button"
+                                className="me-3 btn btn-secondary"
+                                onClick={this.handleShow}
+                            >
+                                <FontAwesomeIcon icon={faTrash} inverse />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -150,41 +156,48 @@ class CommunesVilles extends Component {
     };
 
     render() {
-        let { data, filteredData, searchInput , noResults} = this.state;
+        let { data, filteredData, searchInput, noResults } = this.state;
 
         data = filteredData && filteredData.length ? filteredData : data;
 
         return (
             <div className="main-container">
                 <div className="inner-container">
-                    <fieldset className="fieldset-ville px">
-                        <div className="fieldset-ville-titre">
+                <h5 className="page-title">
+                        Communes / Villes
+                    </h5>
+                    <fieldset className="fieldset-recherche">
+                        <div className="fieldset-recherche-titre">
                             Moteur de recherche
                         </div>
-                        <Form.Group className="row">
-                            <Form.Label htmlFor="searchInput" className="col">
-                                Chercher une commune / ville :
-                            </Form.Label>
-                            <Form.Control
-                                className="col"
-                                name="searchInput"
-                                value={searchInput || ""}
-                                onChange={this.handleChange}
-                            />
-                            <div className="col">
-                                {" "}
-                                <Button variant="secondary">Chercher</Button>
+                        <Form.Group>
+                            <div className="row mb-3 align-items-center">
+                                <Form.Label
+                                    htmlFor="searchInput"
+                                    className="col-lg-4 "
+                                >
+                                    Chercher une commune/ville :
+                                </Form.Label>
+
+                                <div className="col-lg-8">
+                                    <Form.Control
+                                        className="col"
+                                        name="searchInput"
+                                        value={searchInput || ""}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
                             </div>
                         </Form.Group>
                     </fieldset>
 
-                    <div className="my-3 p-2 blueTitle">
+                    {/* <div className="my-3 p-2 blueTitle">
                         Liste des communes/villes
-                    </div>
+                    </div> */}
 
                     <div className="my-3"></div>
                     <Link to="/ajouter-ville">
-                        <button className="mr-2 btn btn-danger ">
+                        <button className="mr-2 btn btn-primary ">
                             + Ajouter une commune/ville
                         </button>
                     </Link>
@@ -192,20 +205,20 @@ class CommunesVilles extends Component {
                     {noResults ? (
                         <div className="mt-5">Aucun résultat.</div>
                     ) : (
-
-                    <div className="mt-3">
-                        {data.map((x) => (
-                            <LocationCard
-                                key={x.id}
-                                id={x.id}
-                                image={x.image}
-                                city={x.city}
-                                description={x.description}
-                                localDelete={this.localDelete}
-                            />
-                        ))}
-                    </div> )}
-                </div>                   
+                        <div className="mt-3">
+                            {data.map((x) => (
+                                <LocationCard
+                                    key={x.id}
+                                    id={x.id}
+                                    image={x.image}
+                                    city={x.city}
+                                    description={x.description}
+                                    localDelete={this.localDelete}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }

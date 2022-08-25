@@ -14,35 +14,37 @@ import PoiDetailsSection from "./PoiDetailsSection";
 import PoiDescriptionSection from "./PoiDescriptionSection";
 import PoiDateSection from "./PoiDateSection";
 
-
-
 function PointsInteretForm() {
     const languages = ["fr", "ar", "en"];
     const [key, setKey] = useState(languages[0]);
     const updateId = useParams().id;
-    console.log("updateID is ", updateId)
+    console.log("updateID is ", updateId);
     const navigate = useNavigate();
 
     const onSubmit = (values) => {
         const formdata = values;
         console.log("Form data is: ", values);
-        console.log("inside funciton update id is", updateId)
+        console.log("inside funciton update id is", updateId);
         if (updateId === undefined) {
-            console.log("updateID is undef")
+            console.log("updateID is undef");
             postPOI(formdata);
         } else {
-            console.log("updateID is not undef")
+            console.log("updateID is not undef");
             putPOI(formdata, updateId);
         }
 
         navigate("/points-d-interet/liste");
     };
 
-
-
     return (
         <div className="main-container">
             <div className="inner-container">
+                {updateId && (
+                    <h5 className="page-title"> Modifier le point d'intérêt</h5>
+                )}
+                {!updateId && (
+                    <h5 className="page-title"> Créer un point d'intérêt</h5>
+                )}
                 <Formik
                     initialValues={initialValues}
                     onSubmit={onSubmit}
@@ -115,7 +117,18 @@ function PointsInteretForm() {
                                 </Accordion.Item>
                             </Accordion>
 
-                            <Button type="submit">Valider</Button>
+                            <div className="d-flex flex-row justify-content-end mt-3">
+                                <Button
+                                    variant="primary"
+                                    className="me-3"
+                                    type="submit"
+                                >
+                                    Valider
+                                </Button>
+                                <Button variant="secondary" type="button">
+                                    Annuler
+                                </Button>
+                            </div>
                         </FormikForm>
                     )}
                 </Formik>

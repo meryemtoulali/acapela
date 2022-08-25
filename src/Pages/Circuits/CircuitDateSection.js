@@ -57,7 +57,7 @@ const CircuitDateSection = ({ values, setFieldValue }) => {
                                                 <div className="col-sm-2 mt-2 mt-sm-0">
                                                     {index === 0 && (
                                                         <Button
-                                                            variant="info me-3"
+                                                            variant="primary"
                                                             type="button"
                                                             onClick={() =>
                                                                 push({
@@ -75,7 +75,7 @@ const CircuitDateSection = ({ values, setFieldValue }) => {
 
                                                     {index !== 0 && (
                                                         <Button
-                                                            variant="danger"
+                                                            variant="secondary"
                                                             type="button"
                                                             onClick={() =>
                                                                 remove(index)

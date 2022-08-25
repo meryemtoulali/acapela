@@ -1,6 +1,11 @@
 body {
     background-color: #eceff1;
-    
+    font-size: 0.88rem;
+    color: #495057;
+}
+
+.accordion-item {
+    color: #495057;
 }
 
 .main-container {
@@ -11,19 +16,121 @@ body {
     padding-top: 80px;
 }
 
-.inner-container{
+.inner-container {
     background-color: white;
     padding: 50px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
+.page-title {
+    font-size: 33px;
+    color: #fd2b2b;
+    display: block;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #fd2b2b;
+    margin-bottom: 50px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid rgba(99, 99, 99, 0.224);
+}
+
+.form-control:focus,
+.form-control:hover {
+    border: 1px solid rgba(99, 99, 99, 0.109);
+
+    box-shadow: none;
+}
+
+.fieldset-recherche .form-control:focus,
+.fieldset-recherche .form-control:hover {
+    border: 1px solid rgba(99, 99, 99, 0.109);
+
+    box-shadow: rgba(0, 0, 0, 0.081) 0px 6px 15px 0px;
+}
+
+
+.form-check-input:focus{
+    border: 1px solid #bbbbbb;
+
+}
+.form-check-input:checked {
+    border: 1px solid #fd2b2b;
+    background-color: #fd2b2b;
+}
+
+
+
+.form-check-input:focus {
+    box-shadow: none !important;
+}
+
+.btn {
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.88rem;
+    padding: 8px 25px;
+}
+
+.btn-primary {
+    color: #fff;
+    background: linear-gradient(203.42deg, #ff7373 11.02%, #ff0d0d 58.1%);
+    border: none; /*set the color you want here*/
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background: linear-gradient(203.42deg, #ff7373 11.02%, #ff0d0d 58.1%);
+    border: none; /*set the color you want here*/
+    box-shadow: 0px 5px 8px rgba(255, 10, 10, 0.247) !important;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: rgb(181, 181, 181);
+    border: none; /*set the color you want here*/
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: rgb(153, 153, 153);
+    border: none; /*set the color you want here*/
+    box-shadow: none !important;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: rgb(11, 16, 55);
+    border: none; /*set the color you want here*/
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary.active,
+.open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: rgb(53, 65, 125);
+    border: none; /*set the color you want here*/
+    box-shadow: none !important;
 }
 
 @media (max-width: 1360px) {
     .sidebar {
         display: none;
     }
-    .main-container{
+    .main-container {
         margin-left: 30px;
-        
+    }
+
+    .inner-container {
+        padding: 30px;
     }
 }

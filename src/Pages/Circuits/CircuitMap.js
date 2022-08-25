@@ -9,9 +9,6 @@ import { createControlComponent } from "@react-leaflet/core";
 
 import "leaflet-routing-machine";
 
-
-
-
 const CircuitMap = ({
     push,
     remove,
@@ -27,37 +24,27 @@ const CircuitMap = ({
     const routingMachineRef = useRef();
     const pluginRef = useRef();
 
+    function convertTime(value) {
+        const sec = parseInt(value, 10); // convert value to number if it's string
+        let hours = Math.floor(sec / 3600); // get hours
+        let minutes = Math.floor((sec - hours * 3600) / 60); // get minutes
 
-function convertTime(value) {
-    const sec = parseInt(value, 10); // convert value to number if it's string
-    let hours   = Math.floor(sec / 3600); // get hours
-    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
-    
-    
-    return hours+' h '+minutes+' min '; // Return is HH : MM : SS
-}
+        return hours + " h " + minutes + " min "; // Return is HH : MM : SS
+    }
 
     const LeafIcon = L.Icon.extend({
-        options: {}
-      });
+        options: {},
+    });
     const blueIcon = new LeafIcon({
-        iconUrl:
-          "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|309ddb&chf=a,s,ee00FFFF"
-      }),
-      redIcon = new LeafIcon({
-        iconUrl:
-          "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|fd2b2c&chf=a,s,ee00FFFF"
-      });
-
-
-
-
-
-
-
+            iconUrl:
+                "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|309ddb&chf=a,s,ee00FFFF",
+        }),
+        redIcon = new LeafIcon({
+            iconUrl:
+                "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|fd2b2c&chf=a,s,ee00FFFF",
+        });
 
     const createRoutineMachineLayer = (props) => {
-
         const selectedPts = poiCircuit.map((poi) =>
             L.latLng(poi.coord[0], poi.coord[1])
         );
@@ -78,15 +65,13 @@ function convertTime(value) {
             createMarker: function () {
                 return null;
             },
-            profile: 'driving',
-            
-        })
-        .on('routesfound', function(e) {
-                /* e.routes will be set to the routing alternatives */
-                
-                setRouteDistance(e.routes[0].summary.totalDistance)
-                setRouteTime(e.routes[0].summary.totalTime)
-            });
+            profile: "driving",
+        }).on("routesfound", function (e) {
+            /* e.routes will be set to the routing alternatives */
+
+            setRouteDistance(e.routes[0].summary.totalDistance);
+            setRouteTime(e.routes[0].summary.totalTime);
+        });
 
         return instance;
     };
@@ -102,10 +87,28 @@ function convertTime(value) {
     //console.log("form after push or remove:", poiCircuit);
 
     return (
-        <div className="circuitsmap">
-            <div className="route-info-overlay">
-                Distance: {Math.floor(routeDistance / 1000 * 10) / 10 } Km<br/>
-                Temps: {convertTime(routeTime)}
+        <div className="circuitsmap" style={{ position: "relative" }}>
+            <div
+                className="route-info-overlay card  m-3"
+                style={{
+                    position: "absolute",
+                    width: 250,
+                    top: 5,
+                    right: 0,
+                    zIndex: 10000,
+                }}
+            >
+                <div className="card-header  text-center">Détails</div>
+                <div className="p-2">
+                    Distance :{" "}
+                    {routeTime && (
+                        <span>
+                            {Math.floor((routeDistance / 1000) * 10) / 10} Km
+                        </span>
+                    )}
+                    <br />
+                    Temps : {routeTime && <span>{convertTime(routeTime)}</span>}
+                </div>
             </div>
             <MapContainer
                 center={initialPosition}
@@ -117,11 +120,14 @@ function convertTime(value) {
                         <Marker
                             key={index}
                             position={poiMapPositions[index].coords}
-                            icon={poiCircuit.filter(
-                                (poi) =>
-                                    poi.key ===
-                                    poiMapPositions[index].key
-                            ).length === 0? blueIcon : redIcon}
+                            icon={
+                                poiCircuit.filter(
+                                    (poi) =>
+                                        poi.key === poiMapPositions[index].key
+                                ).length === 0
+                                    ? blueIcon
+                                    : redIcon
+                            }
                         >
                             <Popup>
                                 <div className="text-center">
@@ -174,6 +180,8 @@ function convertTime(value) {
                                                         }
                                                     );
                                                 remove(delIndex);
+                                                console.log(poiCircuit)
+                                            
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faTrash} />

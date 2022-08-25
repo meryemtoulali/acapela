@@ -2,7 +2,10 @@ import "./Assets/Styles/App.css";
 
 import Accueil from "./Pages/Accueil.js";
 import EspaceClient from "./Pages/EspaceClient";
-import CommunesVilles from "./Pages/CommunesVilles";
+import CommunesVilles from "./Pages/CommunesVilles/CommunesVilles";
+import AjouterVille from "./Pages/CommunesVilles/AjouterVille"
+import DetailsVille from "./Pages/CommunesVilles/DetailsVille"
+
 import PointsInteretTable from "./Pages/Points-Interet/PointsInteretTable";
 import PointsInteretListe from "./Pages/Points-Interet/PointsInteretListe";
 import PointsInteretForm from "./Pages/Points-Interet/PointsInteretForm"
@@ -13,9 +16,8 @@ import CircuitsForm from "./Pages/Circuits/CircuitsForm";
 import Corbeille from "./Pages/Corbeille";
 import ModifierMdp from "./Pages/ModifierMdp";
 import Deconnexion from "./Pages/Deconnexion";
-import AjouterVille from "./Pages/AjouterVille"
+
 import ModifierTable from "./Pages/ModifierTable"
-import DetailsVille from "./Pages/DetailsVille"
 
 import Header from "./Components/Header";
 import SideBar from "./Components/Sidebar";
