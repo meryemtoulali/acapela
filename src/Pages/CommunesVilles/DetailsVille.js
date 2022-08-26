@@ -16,8 +16,6 @@ export const DetailsVille = (props) => {
     });
 
     return (
-        <>
-            <div className="main-container">
                 <div className="inner-container">
                     <fieldset className="fieldset-recherche">
                         <div className="fieldset-recherche-titre">
@@ -58,8 +56,6 @@ export const DetailsVille = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
     );
 };
 

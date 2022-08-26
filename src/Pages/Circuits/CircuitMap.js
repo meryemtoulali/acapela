@@ -140,7 +140,7 @@ const CircuitMap = ({
                                             poiMapPositions[index].key
                                     ).length === 0 && (
                                         <Button
-                                            variant="info"
+                                            variant="primary"
                                             type="button"
                                             onClick={() => {
                                                 push({
@@ -165,7 +165,7 @@ const CircuitMap = ({
                                             poiMapPositions[index].key
                                     ).length > 0 && (
                                         <Button
-                                            variant="danger"
+                                            variant="secondary"
                                             type="button"
                                             onClick={() => {
                                                 let delIndex =

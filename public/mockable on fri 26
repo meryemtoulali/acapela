@@ -1,0 +1,156 @@
+---
+  swagger: "2.0"
+  info:
+    version: "None"
+    title: "None"
+    description: "None"
+    termsOfService: "None"
+    contact:
+      name: ""
+  host: "https://demo5246547.mockable.io"
+  basePath: "/"
+  schemes:
+    - "https"
+    - "http"
+  consumes:
+    - "application/json"
+  produces:
+    - "application/json"
+  tags:
+    - name: demo5246547
+      description: https://demo5246547.mockable.io
+
+  paths:
+    
+    /:
+      
+      put:
+        description: ""
+        operationId: "PUT /"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      post:
+        description: ""
+        operationId: "POST /"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      get:
+        description: ""
+        operationId: "GET /"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      delete:
+        description: ""
+        operationId: "DELETE /"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      
+    
+    /circuit:
+      
+      get:
+        description: ""
+        operationId: "GET /circuit"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      
+    
+    /corbeille:
+      
+      get:
+        description: ""
+        operationId: "GET /corbeille"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      
+    
+    /poi:
+      
+      get:
+        description: ""
+        operationId: "GET /poi"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      
+    
+    /poiMapPositions:
+      
+      get:
+        description: ""
+        operationId: "GET /poiMapPositions"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      
+    
+    /table:
+      
+      get:
+        description: ""
+        operationId: "GET /table"
+        tags:
+          - demo5246547
+        produces:
+          - "application/json"
+        responses:
+          "200":
+            description: ""
+        
+      
+      
+    

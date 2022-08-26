@@ -45,7 +45,6 @@ export const AjouterVille = (props) => {
     };
 
     return (
-        <div className="main-container">
             <div className="inner-container">
                 
                     {updateId && (<h5 className="page-title"> Modifier la commune/ville</h5>)}
@@ -91,7 +90,7 @@ export const AjouterVille = (props) => {
 
                     <div className="d-flex flex-row justify-content-end mt-2">
                         <button className="btn btn-primary me-2" type="submit">
-                            Valider
+                            Enregistrer
                         </button>
                             <button className="btn btn-secondary "
                             onClick={ () => navigate("/communes-villes")}>
@@ -100,7 +99,6 @@ export const AjouterVille = (props) => {
                     </div>
                 </Form>
             </div>
-        </div>
     );
 };
 

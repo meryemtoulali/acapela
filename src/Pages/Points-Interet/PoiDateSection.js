@@ -1,9 +1,7 @@
 import { FieldArray } from "formik";
 import { Button, Form } from "react-bootstrap";
 import PeriodePicker from "../../Components/PeriodePicker";
-import OptionsHebdo from "./OptionsHebdo";
-import OptionsMensu from "./OptionsMensu";
-import OptionsAnnu from "./OptionsAnnu"
+import {OptionsHebdo, OptionsMensu, OptionsAnnu} from "./OptionsRecurrence";
 import {
     FormikRadioGroup,
 } from "../../Components/FormikControls";

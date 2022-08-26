@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { getCircuit, deleteCircuit } from "../../Services/ServiceCircuits";
 import "../../Assets/Styles/ListePage.css";
 import { Link } from "react-router-dom";
-import { Form, Button, } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,6 +32,8 @@ class CircuitCard extends Component {
         return (
             <>
                 <ConfirmModal
+                    message="Êtes-vous sûr de vouloir supprimer ce circuit ?"
+                    confirmButton="Supprimer"
                     showConfirm={this.state.showConfirm}
                     handleClose={this.handleClose}
                     handleConfirm={() => {
@@ -100,12 +102,7 @@ class CircuitsListe extends Component {
     }
 
     componentDidMount() {
-        const doGetCircuit = async () => {
-            const result = await getCircuit();
-            this.setState({ data: result });
-        };
-
-        doGetCircuit();
+        getCircuit().then((res) => this.setState({ data: res }));
     }
 
     globalSearch = () => {
@@ -172,7 +169,6 @@ class CircuitsListe extends Component {
         data = filteredData && filteredData.length ? filteredData : data;
 
         return (
-            <div className="main-container">
                 <div className="inner-container">
                     <h6 className="page-title">Circuits</h6>
                     <fieldset className="fieldset-recherche">
@@ -270,12 +266,12 @@ class CircuitsListe extends Component {
 
                     <div className="mb-4">
                         <Link to="/circuits/form">
-                        <Button variant="primary">
-                            <FontAwesomeIcon icon={faPlus} /> Ajouter un circuit
-                        </Button>
-                    </Link>
+                            <Button variant="primary">
+                                <FontAwesomeIcon icon={faPlus} /> Ajouter un
+                                circuit
+                            </Button>
+                        </Link>
                     </div>
-                    
 
                     {noResults ? (
                         <div className="mt-5">Aucun résultat.</div>
@@ -297,7 +293,6 @@ class CircuitsListe extends Component {
                         </div>
                     )}
                 </div>
-            </div>
         );
     }
 }

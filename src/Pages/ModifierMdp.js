@@ -4,7 +4,7 @@ import React, { Component } from "react";
 class ModifierMdp extends Component {
     render() {
         return (
-            <div className="main-container">
+            <div className="inner-container">
                 Modifier le mot de passe
             </div>
         );

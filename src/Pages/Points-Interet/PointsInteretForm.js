@@ -37,7 +37,6 @@ function PointsInteretForm() {
     };
 
     return (
-        <div className="main-container">
             <div className="inner-container">
                 {updateId && (
                     <h5 className="page-title"> Modifier le point d'intérêt</h5>
@@ -123,9 +122,9 @@ function PointsInteretForm() {
                                     className="me-3"
                                     type="submit"
                                 >
-                                    Valider
+                                    Enregistrer
                                 </Button>
-                                <Button variant="secondary" type="button">
+                                <Button variant="secondary" type="button" onClick={()=> navigate("/points-d-interet/liste")}>
                                     Annuler
                                 </Button>
                             </div>
@@ -133,7 +132,6 @@ function PointsInteretForm() {
                     )}
                 </Formik>
             </div>
-        </div>
     );
 }
 //on submit check isRecurrence

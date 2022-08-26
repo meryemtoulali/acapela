@@ -9,15 +9,15 @@ export default class ConfirmModal extends Component {
                 onHide={this.props.handleClose}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Voulez-vous vraiment supprimer ?</Modal.Title>
+                    <Modal.Title>{this.props.message}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={this.handleClose}>
+                    <Button variant="secondary" onClick={this.props.handleClose}>
                         Annuler
                     </Button>
-                    <Button variant="danger" onClick={this.props.handleConfirm}>
-                        Supprimer
+                    <Button variant="info" onClick={this.props.handleConfirm}>
+                        {this.props.confirmButton}
                     </Button>
                 </Modal.Footer>
             </Modal>

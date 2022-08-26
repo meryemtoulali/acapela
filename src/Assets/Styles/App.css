@@ -7,13 +7,19 @@ body {
 .accordion-item {
     color: #495057;
 }
-
 .main-container {
+    transition: 0.3s;
     display: block;
-    margin-left: 310px;
     margin-right: 30px;
     margin-bottom: 30px;
-    padding-top: 80px;
+    padding-top: 90px;
+}
+
+.main-container-open {
+    margin-left: 310px;
+}
+.main-container-closed {
+    margin-left: 30px;
 }
 
 .inner-container {
@@ -50,17 +56,13 @@ body {
     box-shadow: rgba(0, 0, 0, 0.081) 0px 6px 15px 0px;
 }
 
-
-.form-check-input:focus{
+.form-check-input:focus {
     border: 1px solid #bbbbbb;
-
 }
 .form-check-input:checked {
     border: 1px solid #fd2b2b;
     background-color: #fd2b2b;
 }
-
-
 
 .form-check-input:focus {
     box-shadow: none !important;
@@ -124,7 +126,10 @@ body {
 
 @media (max-width: 1360px) {
     .sidebar {
-        display: none;
+        box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+            rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px,
+            rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px,
+            rgba(0, 0, 0, 0.07) 0px 32px 64px;
     }
     .main-container {
         margin-left: 30px;

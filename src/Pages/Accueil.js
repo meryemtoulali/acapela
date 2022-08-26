@@ -15,9 +15,7 @@ class Banner extends Component {
 class Accueil extends Component {
     render() {
         return (
-            <div className="main-container">
                 <Banner />
-            </div>
         );
     }
 }

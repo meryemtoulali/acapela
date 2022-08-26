@@ -1,10 +1,11 @@
 .header-row {
     background: #fd2b2b;
     color: white;
+    box-shadow: rgba(67, 67, 94, 0.27) 0px 0px 20px 0px;
     padding: 10px 20px;
     font-weight: bold;
     position: fixed;
-    height: 50px;
+    height: 60px;
     width: 100%;
     box-sizing: border-box;
     z-index: 2;
@@ -18,15 +19,20 @@
 }
 
 .menu-icon {
-    color: white;
-    height: 30px;
-    margin: auto 10px;
-    display: inline-block;
-    vertical-align: middle;
+    height: 28px;
+    cursor: pointer;
+    transition: transform .2s;
+     
+}
+
+.menu-icon:hover{
+    transform: scale(1.2);
 }
 
 .logo {
     height: 40px;
     display: inline-block;
     vertical-align: middle;
+    margin-left: 20px;
+    margin-top: 2px;
 }

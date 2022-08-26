@@ -3,7 +3,7 @@ import { getVilles } from "../../Services/ServiceVilles";
 import "../../Assets/Styles/ListePage.css";
 import { Link } from "react-router-dom";
 import { deleteVille } from "../../Services/ServiceVilles";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -37,6 +37,8 @@ class LocationCard extends Component {
         return (
             <>
                 <ConfirmModal
+                    message="Êtes-vous sûr de vouloir supprimer cette commune/ville ?"
+                    confirmButton="Supprimer"
                     showConfirm={this.state.showConfirm}
                     handleClose={this.handleClose}
                     handleConfirm={() => {
@@ -114,12 +116,7 @@ class CommunesVilles extends Component {
     }
 
     componentDidMount() {
-        const doGetVilles = async () => {
-            const result = await getVilles();
-            this.setState({ data: result });
-        };
-
-        doGetVilles();
+        getVilles().then((res) => this.setState({ data: res }));
     }
 
     globalSearch = () => {
@@ -161,11 +158,8 @@ class CommunesVilles extends Component {
         data = filteredData && filteredData.length ? filteredData : data;
 
         return (
-            <div className="main-container">
                 <div className="inner-container">
-                <h5 className="page-title">
-                        Communes / Villes
-                    </h5>
+                    <h5 className="page-title">Communes / Villes</h5>
                     <fieldset className="fieldset-recherche">
                         <div className="fieldset-recherche-titre">
                             Moteur de recherche
@@ -219,7 +213,6 @@ class CommunesVilles extends Component {
                         </div>
                     )}
                 </div>
-            </div>
         );
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { getPOI, deletePOI } from "../../Services/ServicePoi";
 import "../../Assets/Styles/ListePage.css";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import ConfirmModal from "../../Components/ConfirmModal";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,6 +33,8 @@ class LocationCard extends Component {
         return (
             <>
                 <ConfirmModal
+                message="Êtes-vous sûr de vouloir supprimer ce point d'intérêt ?"
+                confirmButton="Supprimer"
                     showConfirm={this.state.showConfirm}
                     handleClose={this.handleClose}
                     handleConfirm={() => {
@@ -105,12 +107,8 @@ class PointsInteretListe extends Component {
     }
 
     componentDidMount() {
-        const doGetPOI = async () => {
-            const result = await getPOI();
-            this.setState({ data: result });
-        };
+        getPOI().then((res) => this.setState({ data: res }));
 
-        doGetPOI();
     }
 
     globalSearch = () => {
@@ -171,7 +169,6 @@ class PointsInteretListe extends Component {
         data = filteredData && filteredData.length ? filteredData : data;
 
         return (
-            <div className="main-container">
                 <div className="inner-container">
                     <h5 className="page-title">
                         Points d'intérêt
@@ -302,7 +299,6 @@ class PointsInteretListe extends Component {
                         </div>
                     )}
                 </div>
-            </div>
         );
     }
 }

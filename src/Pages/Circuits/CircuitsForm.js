@@ -15,7 +15,7 @@ import CircuitDateSection from "./CircuitDateSection";
 import CircuitPoiSection from "./CircuitPoiSection";
 
 function CircuitsForm() {
-    // const [poiMapPositions, setPoiMapPositions] = useState()
+    const [poiMapPositions, setPoiMapPositions] = useState()
     const languages = ["fr", "en", "es"];
     const [key, setKey] = useState(languages[0]);
     const updateId = useParams().id;
@@ -37,18 +37,13 @@ function CircuitsForm() {
         navigate("/circuits/liste");
     };
 
-    // useEffect (()=> {
-    //     console.log("in useeffect")
-    //     const doGetPoiMapPositions = async () => {
-    //         const result = await getPoiMapPositions();
-    //        setPoiMapPositions(result);
-    //     };
-
-    //     doGetPoiMapPositions();
-    // }, [] )
+    useEffect (()=> {
+        console.log("in useeffect")
+        getPoiMapPositions().then((res) => setPoiMapPositions(res));
+        
+    }, [] )
 
     return (
-        <div className="main-container">
             <div className="inner-container">
             {updateId && (
                     <h5 className="page-title"> Modifier le circuit</h5>
@@ -137,7 +132,7 @@ function CircuitsForm() {
                                        <CircuitPoiSection
                                             values={values}
                                             setFieldValue={setFieldValue}
-                                            // poiMapPositions = {poiMapPositions}
+                                            poiMapPositions = {poiMapPositions || []}
                                         />
                                     </Accordion.Body>
                                 </Accordion.Item>
@@ -152,7 +147,6 @@ function CircuitsForm() {
                     )}
                 </Formik>
             </div>
-        </div>
     );
 }
 //on submit check isRecurrence

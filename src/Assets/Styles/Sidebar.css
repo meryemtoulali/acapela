@@ -5,8 +5,14 @@
     height: 100%;
     position: fixed;
     font-size: 17px;
-    margin-top: 50px;
-    
+    margin-top: 60px;
+    transition: 0.3s;
+    padding-top: 10px;
+    z-index: 2;
+}
+
+.sidebar-closed{
+    margin-left: -280px;
 }
 
 .sidebar ul {
@@ -32,13 +38,26 @@
     color: inherit;
     display: block;
     padding: 10px;
+    transition: 0.2s;
 }
 
-.sidebar a.active {
+.sidebar a.active{
     background-color: #def1fd;
     border-radius: 3px;
     color: #fd2b2b;
-    font-weight: bold;
 }
 
+.sidebar a:hover{
+    background-color: #def1fd;
+    border-radius: 3px;
+}
 
+.sidebar-icon {
+    margin-right: 12px;
+    color: #d3d3d3;
+    transition: 0.2s;
+}
+
+.sidebar a.active .sidebar-icon{
+    color: #fd2b2b;
+}

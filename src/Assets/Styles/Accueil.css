@@ -42,4 +42,6 @@
     background-repeat: no-repeat;
     background-size: 100%;
     background-image: url("../Images/accueil.png");
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 }
