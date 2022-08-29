@@ -16,7 +16,6 @@ import {
 class SideBar extends Component {
     render() {
         const open = this.props.open;
-        console.log("open in sidebar is", open);
         return (
             <div
                 className={

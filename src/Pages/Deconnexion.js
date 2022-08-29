@@ -1,14 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-
-class Deconnexion extends Component {
-    render() {
-        return (
+const Deconnexion = () => {
+    // const navigate = useNavigate();
+    // useEffect( () => {
+    //     console.log("effect of deconnexion")
+    //     sessionStorage.clear()
+    //     navigate('/')
+    // }, [])
+    return (
             <div className="inner-container">
-                Déconnexion
+                Déconnexion...
             </div>
         );
-    }
 }
 
 export default Deconnexion;

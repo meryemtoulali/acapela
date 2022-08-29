@@ -18,28 +18,57 @@ import ModifierMdp from "./Pages/ModifierMdp";
 import Deconnexion from "./Pages/Deconnexion";
 
 import ModifierTable from "./Pages/ModifierTable";
-
+import Login from "./Pages/Login";
 import Header from "./Components/Header";
 import SideBar from "./Components/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+function useToken() {
+    const getToken = () => {
+        const tokenString = sessionStorage.getItem("token");
+        const userToken = JSON.parse(tokenString);
+        console.log("gettoken returns ", userToken?.token);
+        return userToken?.token;
+    };
+    const [token, setToken] = useState(getToken());
+    const saveToken = (userToken) => {
+        sessionStorage.setItem("token", JSON.stringify(userToken));
+        setToken(userToken.token);
+    };
+    return {
+        setToken: saveToken,
+        token,
+    };
+}
+
 function App() {
     const [open, setOpen] = useState(true);
+    const { token, setToken } = useToken();
 
-    useEffect(() => {
-        console.log("open in app is", open);
-    }, [open]);
+    useEffect(() => {}, [open]);
     const toggleOpen = () => {
         setOpen(!open);
     };
+
+    if (!token) {
+        return <Login setToken={setToken} />;
+    }
+
     return (
         <div>
             <Header toggleOpen={toggleOpen} />
-            <SideBar open = {open} />
-            <div className={open? "main-container main-container-open" : "main-container main-container-closed"}>
+            <SideBar open={open} />
+            <div
+                className={
+                    open
+                        ? "main-container main-container-open"
+                        : "main-container main-container-closed"
+                }
+            >
                 <Routes>
                     <Route path="/" element={<Accueil />} />
+
                     <Route path="/espace-client" element={<EspaceClient />} />
                     <Route
                         path="/communes-villes"
