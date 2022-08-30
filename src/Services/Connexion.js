@@ -1,7 +1,3 @@
-import axios from "axios";
-
-
-
 // export const loginUser = async (credentials) => {
 //     return axios
 //         .post("http://demo5246547.mockable.io/login", JSON.stringify(credentials))
@@ -13,22 +9,28 @@ import axios from "axios";
 //         });
 // };
 
+async function loginUser(credentials) {
+    return fetch("http://demo5246547.mockable.io/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+    }).then((data) => data.json());
+}
 
- async function loginUser(credentials) {
-    return fetch('http://demo5246547.mockable.io/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(data => data.json())
-   }
+// function logoutUser() {
+//     sessionStorage.clear();
+//     console.log("logged out!");
+// }
 
-
-   function logoutUser(){
-    sessionStorage.clear()
-    console.log("logged out!")
-   }   
-   
-   export {loginUser};
+async function changerMdp(newPw) {
+    return fetch("http://demo5246547.mockable.io/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: newPw,
+    }).then((data) => data.json()).then((data) => console.log(data));
+}
+export { loginUser, changerMdp };
